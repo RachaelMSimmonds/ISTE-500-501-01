@@ -5,3 +5,4 @@ arts/src/.DS_Store/*
 arts/node_modules/
 node_modules/
 src/.DS_Store/
+arts/src/build
