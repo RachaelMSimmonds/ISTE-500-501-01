@@ -1,0 +1,9 @@
+./.DS_Store/*
+arts/src/node_modules/
+depricated/
+arts/src/.DS_Store/*
+arts/node_modules/
+node_modules/
+src/.DS_Store/
+arts/build/
+arts/.DS_Store/*
