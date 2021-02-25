@@ -6,19 +6,13 @@
 
 ## Members:
 | Name             | Job Titles                                                       |
+| ---------------- | ---------------------------------------------------------------- |
 | Sergio Zygmunt   | Project Manager/Sponsor Liaison/Meeting Facilitator              |
 | Vincent Venutolo | Meeting Facilitator/Project Manager/Database Manager/UI Designer |
 | Rachael Simmonds | Sponsor Liaison/Note Taker/QA                                    |
 | Nathan Kaufman   | UI Designer/QA                                                   |
 | Jack Old         | System Administrator/Database Manager                            |
 | Nick North       | Note Taker/System Administrator                                  |
-
-- Sergio Zygmunt
-- Vincent Venutolo
-- Jack Old
-- Rachael Simmonds
-- Nathan Kaufman
-- Nick North
 
 ---
 
