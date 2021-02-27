@@ -5,9 +5,11 @@ import { BrowserRouter as Router,
   Route,
   Link } from "react-router-dom";
 import { Text } from 'react';
-import Login from './login.js';
+import Login from './login.jsx';
 import logo from './logo.svg';
 import './App.css';
+
+console.log(Login);
 
 function App() {
   return (
@@ -18,7 +20,7 @@ function App() {
 	  				<li><Link to="/login">Login</Link> </li>
 	  			</ul>
 	  			<Switch>
-	  				<Route path="/login" component={ Login }></Route>
+	  				<Route path="/login"><Login /></Route>
 	  			</Switch>
 	  		</div>
 	  	</Router>

@@ -8,7 +8,6 @@ import { BrowserRouter as Router,
   Link } from "react-router-dom";
 import App from './App';
 //import { DatePicker, message, Checkbox } from 'antd';
-import Login from "./login.js";
 import 'antd/dist/antd.css';
 import './index.css';
 
