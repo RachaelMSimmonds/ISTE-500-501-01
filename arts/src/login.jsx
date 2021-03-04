@@ -9,9 +9,10 @@ function Login(){
 	return(
 		<div className = "login">
 			<div>
-			<Input placeholder = "Username" />
+				<Input placeholder = "Username" />
 			</div>
 			<div>
+				<Input.Password placeholder = "Password" iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)} />
 			</div>
 		</div>
 	);
@@ -21,7 +22,7 @@ function Login(){
 //console.log(Login);
 
 //			<Input placeholder = "Username" />
-//			<Input.password placeholder = "Password" iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)} />
+//			<Input.Password placeholder = "Password" iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)} />
 
 
 export default Login;
