@@ -19,10 +19,5 @@ function Login(){
 
 }
 
-//console.log(Login);
-
-//			<Input placeholder = "Username" />
-//			<Input.Password placeholder = "Password" iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)} />
-
 
 export default Login;
