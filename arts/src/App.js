@@ -8,25 +8,25 @@ import { BrowserRouter as Router,
 import { Text } from 'react';
 import { Input, Space } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import Login from './login.jsx';
+import Login from './login';
 import logo from './logo.svg';
 import './App.css';
 
 
-function App() {
+function App(){
   return (
-    <div>
     	<Router>
 	  		<div>
-	  			<ul>
-	  				<li><Link to="/login">Login</Link> </li>
-	  			</ul>
+	  			<nav>
+	  				<ul>
+	  					<li><Link to="/login">Login</Link> </li>
+	  				</ul>
+	  			</nav>
 	  			<Switch>
-	  				<Route path="/login" exact Component = { Login }/>
+	  				<Route path="/login"><Login /></Route>
 	  			</Switch>
 	  		</div>
 	  	</Router>
-	  </div>
   );
 }
 

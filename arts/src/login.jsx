@@ -1,21 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Input, Space } from 'antd';
-import { Text } from 'react';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import "antd/dist/antd.css";
 import "./index.css";
 
-class Login extends React.Component{
-	render(){
+function Login(){
 	return(
 		<div className = "login">
-
-			<Text>Test</Text>
+			<div>
+			<Input placeholder = "Username" />
+			</div>
+			<div>
+			</div>
 		</div>
 	);
+
 }
-};
 
 //console.log(Login);
 
