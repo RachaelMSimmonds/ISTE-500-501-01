@@ -23,7 +23,6 @@ function Login(){
 		},
 	  };
 	  
-	  const Demo = () => {
 		const onFinish = (values) => {
 		  console.log('Success:', values);
 		};
@@ -82,7 +81,6 @@ function Login(){
 				</div>
 		  	</div>
 		);
-	  };
 	  
 	 // ReactDOM.render(<Demo />, mountNode);
 	// return(
