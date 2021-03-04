@@ -32,7 +32,7 @@ function Login(){
 		};
 	  
 		return (
-			<div className = "login">
+			<div className = "login" >
 				<div>
 				<Form
 					{...layout}
@@ -73,8 +73,14 @@ function Login(){
 					</Form.Item>
 			
 					<Form.Item {...tailLayout}>
-					<Button type="primary" htmlType="submit">
+					<Button type="primary" htmlType="submit" >
 						Submit
+					</Button>
+					</Form.Item>
+
+					<Form.Item {...tailLayout}>
+					<Button type="link" href="http://localhost:3000/registration" >
+					...or Register here!
 					</Button>
 					</Form.Item>
 				</Form>

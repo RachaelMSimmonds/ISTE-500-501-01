@@ -66,28 +66,13 @@ const tailFormItemLayout = {
           width: 70,
         }}
       >
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
+        <Option value="585">585</Option>
       </Select>
     </Form.Item>
   );
-  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
-
-  const onWebsiteChange = (value) => {
-    if (!value) {
-      setAutoCompleteResult([]);
-    } else {
-      setAutoCompleteResult(['.com', '.org', '.net'].map((domain) => `${value}${domain}`));
-    }
-  };
-
-  const websiteOptions = autoCompleteResult.map((website) => ({
-    label: website,
-    value: website,
-  }));
 
     return(
-        <div>
+        <div style={{paddingRight: 500}}>
             <Form
       {...formItemLayout}
       form={form}
@@ -106,6 +91,27 @@ const tailFormItemLayout = {
           {
             required: true,
             message: 'Please input your E-mail!',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      
+      <Form.Item 
+        name="username"
+        label={
+          <span>
+            Username&nbsp;
+            <Tooltip title="First and Last Name">
+              <QuestionCircleOutlined />
+            </Tooltip>
+          </span>
+        }
+        rules={[
+          {
+            required: true,
+            message: 'Please input your username!',
+            whitespace: true,
           },
         ]}
       >
@@ -151,27 +157,7 @@ const tailFormItemLayout = {
       </Form.Item>
 
       <Form.Item
-        name="username"
-        label={
-          <span>
-            Username&nbsp;
-            <Tooltip title="What do you want your username to be?">
-              <QuestionCircleOutlined />
-            </Tooltip>
-          </span>
-        }
-        rules={[
-          {
-            required: true,
-            message: 'Please input your nickname!',
-            whitespace: true,
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
+        name="address"
        label={
         <span>
           Address&nbsp;
@@ -207,21 +193,6 @@ const tailFormItemLayout = {
             width: '100%',
           }}
         />
-      </Form.Item>
-
-      <Form.Item
-        name="website"
-        label="Website"
-        rules={[
-          {
-            required: true,
-            message: 'Please input website!',
-          },
-        ]}
-      >
-        <AutoComplete options={websiteOptions} onChange={onWebsiteChange} placeholder="website">
-          <Input />
-        </AutoComplete>
       </Form.Item>
 
       <Form.Item label="Captcha" extra="We must make sure that your are a human.">
