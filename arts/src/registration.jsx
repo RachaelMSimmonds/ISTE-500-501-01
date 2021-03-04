@@ -174,7 +174,7 @@ const tailFormItemLayout = {
       <Form.Item
        label={
         <span>
-          Username&nbsp;
+          Address&nbsp;
           <Tooltip title="Enter in home address - Street name, City, State, and ZIP ">
             <QuestionCircleOutlined />
           </Tooltip>
@@ -183,7 +183,7 @@ const tailFormItemLayout = {
       rules={[
         {
           required: true,
-          message: 'Please input your nickname!',
+          message: 'Please input your address!',
           whitespace: true,
         },
       ]}
