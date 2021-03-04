@@ -9,6 +9,7 @@ import { Text } from 'react';
 import { Input, Space } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import Login from './login';
+import Registration from './registration';
 import logo from './logo.svg';
 import './App.css';
 
@@ -20,10 +21,12 @@ function App(){
 	  			<nav>
 	  				<ul>
 	  					<li><Link to="/login">Login</Link> </li>
+						<li><Link to="/registration">Sign Up</Link> </li>
 	  				</ul>
 	  			</nav>
 	  			<Switch>
 	  				<Route path="/login"><Login /></Route>
+					<Route path="/registration"><Registration /></Route>  
 	  			</Switch>
 	  		</div>
 	  	</Router>
