@@ -8,4 +8,4 @@ function DataAnalytics(){
 	return(<div></div>);
 }
 
-export default DataAnalytic;
+export default DataAnalytics;
