@@ -15,6 +15,7 @@ import {
   AutoComplete,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import LandingNav from "./navigation/landingNav";
 
 function Registration() {
 
@@ -72,6 +73,8 @@ const tailFormItemLayout = {
   );
 
     return(
+		<div>
+			<LandingNav />
         <div style={{paddingRight: 500}}>
             <Form
       {...formItemLayout}
@@ -242,6 +245,7 @@ const tailFormItemLayout = {
   
 
         </div>
+		</div>
     );
     
     }

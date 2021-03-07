@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Input, Space } from 'antd';
 import { Form, Button, Checkbox } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import LandingNav from "./navigation/landingNav";
 import "antd/dist/antd.css";
 import "./index.css";
 
@@ -33,6 +34,7 @@ function Login(){
 	  
 		return (
 			<div className = "login" >
+				<LandingNav />
 				<div>
 				<Form
 					{...layout}

@@ -19,12 +19,6 @@ function App(){
   return (
     	<Router>
 	  		<div>
-	  			<nav>
-	  				<ul>
-	  					<li><Link to="/login">Login</Link> </li>
-						<li><Link to="/registration">Sign Up</Link> </li>
-	  				</ul>
-	  			</nav>
 	  			<Switch>
 	  				<Route exact path = "/"><Landing /></Route>
 	  				<Route path="/login"><Login /></Route>
