@@ -12,6 +12,8 @@ import Login from './login';
 import Registration from './registration';
 import AdminRegistration from './adminRegistration';
 import Landing from './landing';
+import AdminPortal from './admin/adminPortal';
+import User from './user/user';
 import logo from './logo.svg';
 import './App.css';
 
@@ -25,6 +27,8 @@ function App(){
 	  				<Route path="/login"><Login /></Route>
 					<Route path="/registration"><Registration /></Route> 
 					<Route path="/adminRegistration"><AdminRegistration /></Route> 
+	  				<Route path="/adminportal/:id"><AdminPortal /></Route>
+	  				<Route path="/userportal/:id"><User /></Route>
 	  			</Switch>
 	  		</div>
 	  	</Router>
