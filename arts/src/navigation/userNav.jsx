@@ -5,7 +5,10 @@ import "antd/dist/antd.css";
 import "./../index.css";
 
 function UserNav(){
-	return(<nav></nav>);
+	return(<nav>
+			<ul>
+			</ul>
+		</nav>);
 }
 
 export default UserNav;

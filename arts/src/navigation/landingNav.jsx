@@ -10,6 +10,7 @@ function LandingNav(){
 	  			<ul>
 	  				<li><Link to="/login">Login</Link> </li>
 					<li><Link to="/registration">Sign Up</Link> </li>
+					<li><Link to="/adminRegistration">Join as Organization</Link></li>
 	  			</ul>
 	  		</nav>
 		</div>);
