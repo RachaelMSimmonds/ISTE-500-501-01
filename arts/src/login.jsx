@@ -78,9 +78,7 @@ function Login(){
 					<Button type="primary" htmlType="submit" >
 						Submit
 					</Button>
-					</Form.Item>
-
-					<Form.Item {...tailLayout}>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<Button type="link" href="http://localhost:3000/registration" >
 					...or Register here!
 					</Button>

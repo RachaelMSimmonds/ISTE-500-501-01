@@ -10,6 +10,7 @@ import { Input, Space } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import Login from './login';
 import Registration from './registration';
+import AdminRegistration from './adminRegistration';
 import Landing from './landing';
 import logo from './logo.svg';
 import './App.css';
@@ -22,7 +23,8 @@ function App(){
 	  			<Switch>
 	  				<Route exact path = "/"><Landing /></Route>
 	  				<Route path="/login"><Login /></Route>
-					<Route path="/registration"><Registration /></Route>  
+					<Route path="/registration"><Registration /></Route> 
+					<Route path="/adminRegistration"><AdminRegistration /></Route> 
 	  			</Switch>
 	  		</div>
 	  	</Router>

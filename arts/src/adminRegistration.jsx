@@ -12,14 +12,15 @@ import {
   Col,
   Checkbox,
   Button,
+  TreeSelect,
   AutoComplete,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import LandingNav from "./navigation/landingNav";
 
-function Registration() {
+function AdminRegistration() {
 
-const { Option } = Select;
+    const { Option } = Select;
 
 const formItemLayout = {
   labelCol: {
@@ -83,6 +84,29 @@ const tailFormItemLayout = {
       onFinish={onFinish}
       scrollToFirstError
     >
+    <Form.Item 
+        name="partners"
+        label={
+          <span>
+            Partner Organizations&nbsp;
+            <Tooltip title="Select an organization.">
+              <QuestionCircleOutlined />
+            </Tooltip>
+          </span>
+        }
+     rules={[
+        {
+          required: true,
+          message: 'Please select an Organization!',
+          whitespace: true,
+        },
+      ]}>
+        <TreeSelect
+            treeData={[
+              { title: 'Rochester Museum & Science Center', value: 'Rochester Museum & Science Center' }, { title: 'Garth Fagan Dance', value: 'Garth Fagan Dance' },{ title: 'Geva Theatre', value: 'Geva Theatre' }]}
+          />
+    </Form.Item>
+
  <Form.Item 
         name="username"
         label={
@@ -413,8 +437,7 @@ const tailFormItemLayout = {
           Register
         </Button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <Button type="link" href="http://localhost:3000/adminRegistration">Admin Registration</Button>
-
+        <Button type="link" href="http://localhost:3000/registration">Patron Registration</Button>
       </Form.Item>
     </Form>
   );
@@ -427,4 +450,4 @@ const tailFormItemLayout = {
     }
 //}
 
-export default Registration;
+export default AdminRegistration;
