@@ -13,6 +13,9 @@ import Registration from './registration';
 import AdminRegistration from './adminRegistration';
 import Landing from './landing';
 import AdminPortal from './admin/adminPortal';
+import ChangePassword from './passwordchange/changePassword';
+import ConfirmPassword from './passwordchange/confirmPassword';
+import PasswordResetReq from './passwordchange/passwordResetReq';
 import User from './user/user';
 import logo from './logo.svg';
 import './App.css';
@@ -29,6 +32,9 @@ function App(){
 					<Route path="/adminRegistration"><AdminRegistration /></Route> 
 	  				<Route path="/adminportal/:id"><AdminPortal /></Route>
 	  				<Route path="/userportal/:id"><User /></Route>
+                    <Route path="/confirmpassword"><ConfirmPassword /> </Route>
+                    <Route path="/changePassword"><ChangePassword  /></Route>
+                    <Route path="/passwordResetReq"><PasswordResetReq /></Route> 
 	  			</Switch>
 	  		</div>
 	  	</Router>
