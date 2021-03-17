@@ -2,13 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./../index.css";
-import {Layout, Menu, Icon, Breadcrumb} from "antd";
+import {Layout, Menu, Icon, Breadcrumb, Button} from "antd";
 import {
   DesktopOutlined,
   PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
-  UserOutlined,
+  ClusterOutlined,
+  SettingOutlined,
 } from "@ant-design/icons"
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -36,35 +35,34 @@ function AdminPortal(){
         <Sider >
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-            <Menu.Item key="1" icon={<PieChartOutlined />}>
-              Option 1
+
+            <Menu.Item key="1" icon={<DesktopOutlined />}>
+              <Button type="link" href="http://localhost:3000/adminPortal/1">Dashboard</Button>    
             </Menu.Item>
-            <Menu.Item key="2" icon={<DesktopOutlined />}>
-              Option 2
+
+            <Menu.Item key="2" icon={<PieChartOutlined />}>
+            <Button type="link" href="http://localhost:3000/dataAnalytics/1">Data Analytics</Button> 
             </Menu.Item>
-            <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-              <Menu.Item key="3">Tom</Menu.Item>
-              <Menu.Item key="4">Bill</Menu.Item>
-              <Menu.Item key="5">Alex</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-              <Menu.Item key="6">Team 1</Menu.Item>
-              <Menu.Item key="8">Team 2</Menu.Item>
-            </SubMenu>
-            <Menu.Item key="9" icon={<FileOutlined />}>
-              Files
+
+            <Menu.Item key="8" icon={<ClusterOutlined />}>
+            <Button type="link" href="http://localhost:3000/passManagement/1">Pass Submissions</Button> 
             </Menu.Item>
+
+            <Menu.Item key="9" icon={<SettingOutlined />}>
+            <Button type="link" href="http://localhost:3000/userManagement/1"> User Management</Button>
+            </Menu.Item>
+
           </Menu>
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }} />
           <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
+            {/* <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>User</Breadcrumb.Item>
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
+            </Breadcrumb> */}
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              Bill is a cat.
+              Dashboard/Homepage for admin. Welcome will go here.
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
