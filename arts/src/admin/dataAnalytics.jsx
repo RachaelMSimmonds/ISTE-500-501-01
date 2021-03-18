@@ -1,7 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
-import " ./../index.css";
+import "./../index.css";
+import {Layout, Menu, Icon, Breadcrumb, Button} from "antd";
+import {
+  DesktopOutlined,
+  PieChartOutlined,
+  ClusterOutlined,
+  SettingOutlined,
+} from "@ant-design/icons"
+
+const { Header, Content, Footer, Sider } = Layout;
+const { SubMenu } = Menu;
 
 //wireframe 19
 function DataAnalytics(){
