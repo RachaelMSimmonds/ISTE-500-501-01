@@ -19,10 +19,11 @@ function PassAccepted(){
 	<div>
 		 <Layout style={{ minHeight: '100vh' }}>
         <Sider >
+
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
 
-            <Menu.Item key="1" icon={<DesktopOutlined />}>
+            <Menu.Item key="2" icon={<DesktopOutlined />}>
               <Button type="link" href="http://localhost:3000/adminPortal/1">Dashboard</Button>    
             </Menu.Item>
 
@@ -30,11 +31,11 @@ function PassAccepted(){
             <Button type="link" href="http://localhost:3000/dataAnalytics/1">Data Analytics</Button> 
             </Menu.Item>
 
-            <Menu.Item key="8" icon={<ClusterOutlined />}>
+            <Menu.Item key="1" icon={<ClusterOutlined />}>
             <Button type="link" href="http://localhost:3000/passManagement/1">Pass Submissions</Button> 
             </Menu.Item>
 
-            <Menu.Item key="9" icon={<SettingOutlined />}>
+            <Menu.Item key="2" icon={<SettingOutlined />}>
             <Button type="link" href="http://localhost:3000/userManagement/1"> User Management</Button>
             </Menu.Item>
 
@@ -53,6 +54,11 @@ function PassAccepted(){
           </Content>
           <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
         </Layout>
+        <Sider>
+            <div style={{float: 'right'}}>
+            <Button>Logout</Button>
+        </div>
+        </Sider>
       </Layout>
     );
 	</div>

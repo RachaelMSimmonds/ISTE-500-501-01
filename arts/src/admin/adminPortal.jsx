@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./../index.css";
-import {Layout, Menu, Icon, Breadcrumb, Button} from "antd";
+import {Layout, Menu, PageHeader, Typography, Button} from "antd";
 import {
   DesktopOutlined,
   PieChartOutlined,
@@ -11,8 +11,7 @@ import {
 } from "@ant-design/icons"
 
 const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
-
+const { Paragraph } = Typography;
 
 // class SiderDemo extends React.Component {
 //   state = {
@@ -33,6 +32,7 @@ function AdminPortal(){
     <div>
       <Layout style={{ minHeight: '100vh' }}>
         <Sider >
+        
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
 
@@ -62,14 +62,32 @@ function AdminPortal(){
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb> */}
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+              <PageHeader title="Welcome" className="site-page-header" subTitle="User 1"></PageHeader>
               Dashboard/Homepage for admin. Welcome will go here.
+              <Paragraph>
+                Ant Design interprets the color system into two levels: a system-level color system and a
+                product-level color system.
+              </Paragraph>
+
+              <Paragraph>
+                Ant Design&#x27;s design team preferred to design with the HSB color model, which makes it
+                easier for designers to have a clear psychological expectation of color when adjusting colors,
+                as well as facilitate communication in teams.
+              </Paragraph>
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+          
+
+          
         </Layout>
+        <Sider>
+            <div style={{float: 'right'}}>
+            <Button>Logout</Button>
+        </div>
+        </Sider>
+        
       </Layout>
-    );
-    
+      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
     </div>
     );
   }
