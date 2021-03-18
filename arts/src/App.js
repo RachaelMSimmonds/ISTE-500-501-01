@@ -13,6 +13,10 @@ import Registration from './registration';
 import AdminRegistration from './adminRegistration';
 import Landing from './landing';
 import AdminPortal from './admin/adminPortal';
+import DataAnalytics from './admin/dataAnalytics';
+import PassManagement from './admin/passManagement';
+import UserManagement from './admin/userManagement';
+import PassAccepted from './admin/passAccepted';
 import ChangePassword from './passwordchange/changePassword';
 import ConfirmPassword from './passwordchange/confirmPassword';
 import PasswordResetReq from './passwordchange/passwordResetReq';
@@ -30,7 +34,11 @@ function App(){
 	  				<Route path="/login"><Login /></Route>
 					<Route path="/registration"><Registration /></Route> 
 					<Route path="/adminRegistration"><AdminRegistration /></Route> 
-	  				<Route path="/adminportal/:id"><AdminPortal /></Route>
+	  				<Route path="/adminPortal/:id"><AdminPortal /></Route>
+					<Route path="/dataAnalytics/:id"><DataAnalytics /></Route>
+					<Route path="/passManagement/:id"><PassManagement /></Route>
+					<Route path="/userManagement/:id"><UserManagement /></Route>
+					<Route path="/passAccepted/:id"><PassAccepted /></Route>
 	  				<Route path="/userportal/:id"><User /></Route>
                     <Route path="/confirmpassword"><ConfirmPassword /> </Route>
                     <Route path="/changePassword"><ChangePassword  /></Route>
