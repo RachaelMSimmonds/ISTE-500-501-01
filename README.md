@@ -27,7 +27,6 @@
 ### Default localhost port is 3000
 - To compile: **npm run build** in the *arts* folder to compile
 - To launch the webpage **npm start** 
-- Test
 
 ---
 
