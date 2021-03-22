@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import {Form, Input, Button} from 'antd';
 import "antd/dist/antd.css";
 import LandingNav from "../navigation/landingNav";
+import "./../index.css";
 
 
 //wireframe 5

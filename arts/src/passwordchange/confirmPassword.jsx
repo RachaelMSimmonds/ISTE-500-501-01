@@ -4,6 +4,8 @@ import {Input, Button} from 'antd';
 import "antd/dist/antd.css";
 import LandingNav from "../navigation/landingNav";
 
+import "./../index.css";
+
 //wireframe 7
 function ConfirmPassword(){
     const layout = {

@@ -7,6 +7,7 @@ import "./../index.css";
 function UserNav(){
 	return(<nav>
 			<ul>
+				<li>Logout</li>
 			</ul>
 		</nav>);
 }

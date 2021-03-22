@@ -5,6 +5,8 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
 import LandingNav from "../navigation/landingNav";
 
+import "./../index.css";
+
 //wireframe 6
 function ChangePassword(){
     const layout = {
