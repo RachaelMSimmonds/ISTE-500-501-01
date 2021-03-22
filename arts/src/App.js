@@ -22,6 +22,7 @@ import PasswordResetReq from './passwordchange/passwordResetReq';
 import User from './user/user';
 import PassStore from './user/passStore';
 import UserPasses from './user/userPass';
+import AccountSettings from './user/accountSettings';
 import logo from './logo.svg';
 import './App.css';
 
@@ -43,6 +44,7 @@ function App(){
 	  				<Route path="/userportal/:id"><User /></Route>
 	  				<Route path="/userportal/userpass/:id"><UserPasses /></Route>
 	  				<Route path="/userportal/passstore/:id"><PassStore /></Route>
+	  				<Route path="/userportal/accountsettings/:id"><AccountSettings /></Route>
                     <Route path="/confirmpassword"><ConfirmPassword /> </Route>
                     <Route path="/passwordResetReq"><PasswordResetReq /></Route> 
 	  			</Switch>
