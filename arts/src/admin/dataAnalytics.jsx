@@ -118,19 +118,19 @@ function DataAnalytics(){
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
 
             <Menu.Item key="2" icon={<DesktopOutlined />}>
-              <Button type="link" href="http://localhost:3000/adminPortal/1">Dashboard</Button>    
+              <Button type="link" href="/adminPortal/1">Dashboard</Button>    
             </Menu.Item>
 
             <Menu.Item key="1" icon={<PieChartOutlined />}>
-            <Button type="link" href="http://localhost:3000/dataAnalytics/1">Data Analytics</Button> 
+            <Button type="link" href="/dataAnalytics/1">Data Analytics</Button> 
             </Menu.Item>
 
             <Menu.Item key="8" icon={<ClusterOutlined />}>
-            <Button type="link" href="http://localhost:3000/passManagement/1">Pass Submissions</Button> 
+            <Button type="link" href="/passManagement/1">Pass Submissions</Button> 
             </Menu.Item>
 
             <Menu.Item key="9" icon={<SettingOutlined />}>
-            <Button type="link" href="http://localhost:3000/userManagement/1"> User Management</Button>
+            <Button type="link" href="/userManagement/1"> User Management</Button>
             </Menu.Item>
 
           </Menu>
