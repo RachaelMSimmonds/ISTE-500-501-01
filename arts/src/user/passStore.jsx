@@ -26,7 +26,7 @@ function PassStore(){
 			  <Sider width={200} className="site-layout-background">
 				<Menu
 				  mode="inline"
-				  defaultSelectedKeys={['1']}
+				  defaultSelectedKeys={['2']}
 				  defaultOpenKeys={['sub1']}
 				  style={{ height: '100%', borderRight: 0 }}
 				>

@@ -44,11 +44,13 @@ function AccountSettings(){
 					minHeight: 280,
 				  }}
 				>
-				  <Button type="primary" href="/">Confirm Email</Button>
+				  <Button type="primary" href={"/userportal/accountsettings/confirmemail/"+id}>Confirm Email</Button>
+					<br />
 					<br />
 				  <Button type="primary" href="/changePassword">Change Password</Button>
 					<br />
-				  <Button type="primary" href="/">Upload documents</Button>
+					<br />
+				  <Button type="primary" href={"/userportal/accountsettings/passapp1/"+id}>Upload documents</Button>
 					<br />
 				</Content>
 			  </Layout>

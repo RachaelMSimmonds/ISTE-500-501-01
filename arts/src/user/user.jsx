@@ -28,13 +28,12 @@ function User(){
 			  <Sider width={200} className="site-layout-background">
 				<Menu
 				  mode="inline"
-				  defaultSelectedKeys={['1']}
 				  defaultOpenKeys={['sub1']}
 				  style={{ height: '100%', borderRight: 0 }}
 				>
 				 	<Menu.Item key="1"><Link to={"/userportal/userpass/"+id}>My Passes</Link></Menu.Item>
 					<Menu.Item key="2"><Link to={"/userportal/passstore/"+id}>Availible Passes</Link></Menu.Item>
-					<Menu.Item key="3"><Button type='link' href={"/userportal/accountsettings/"+id}>Account Settings</Button></Menu.Item>
+					<Menu.Item key="3"><Link to={"/userportal/accountsettings/"+id}>Account Settings</Link></Menu.Item>
 				</Menu>
 			  </Sider>
 			  <Layout style={{ padding: '0 24px 24px' }}>
