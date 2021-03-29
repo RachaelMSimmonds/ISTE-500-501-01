@@ -32,7 +32,6 @@ import './App.css';
 
 
 function App(){
-	console.log(ConfirmEmail);
   return (
     	<Router>
 	  		<div>
