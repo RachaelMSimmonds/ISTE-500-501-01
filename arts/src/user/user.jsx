@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Layout, Menu, Breadcrumb } from 'antd';
+import { Button } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -33,7 +34,7 @@ function User(){
 				>
 				 	<Menu.Item key="1"><Link to={"/userportal/userpass/"+id}>My Passes</Link></Menu.Item>
 					<Menu.Item key="2"><Link to={"/userportal/passstore/"+id}>Availible Passes</Link></Menu.Item>
-					<Menu.Item key="3"><Link to={"/"+id}>Account Settings</Link></Menu.Item>
+					<Menu.Item key="3"><Button type='link' href={"/userportal/accountsettings/"+id}>Account Settings</Button></Menu.Item>
 				</Menu>
 			  </Sider>
 			  <Layout style={{ padding: '0 24px 24px' }}>

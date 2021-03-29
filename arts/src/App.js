@@ -42,10 +42,10 @@ function App(){
 					<Route path="/passManagement/:id"><PassManagement /></Route>
 					<Route path="/userManagement/:id"><UserManagement /></Route>
 					<Route path="/passAccepted/:id"><PassAccepted /></Route>
-	  				<Route path="/userportal/:id"><User /></Route>
+	  				<Route exact path="/userportal/:id"><User /></Route>
 	  				<Route path="/userportal/userpass/:id"><UserPasses /></Route>
 	  				<Route path="/userportal/passstore/:id"><PassStore /></Route>
-	  				<Route path="/userportal/accountsettings/:id"><AccountSettings /></Route>
+	  				<Route exact path="/userportal/accountsettings/:id"><AccountSettings /></Route>
                     <Route path="/confirmpassword"><ConfirmPassword /> </Route>
                     <Route path="/passwordResetReq"><PasswordResetReq /></Route> 
                     <Route path="/changePassword"><ChangePassword /></Route>
