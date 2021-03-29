@@ -16,7 +16,7 @@ import "./../index.css";
 
 //wireframes 11 &12
 function ConfirmEmail(){
-	const form = Form.useForm();
+	const [form] = Form.useForm();
 	
 	const onFinish = (values) => {
     	console.log('Received values of form: ', values);
