@@ -45,8 +45,11 @@ function AccountSettings(){
 				  }}
 				>
 				  <Button type="primary" href="/">Confirm Email</Button>
-				  <Button type="primary" href="/">Change Password</Button>
+					<br />
+				  <Button type="primary" href="/changePassword">Change Password</Button>
+					<br />
 				  <Button type="primary" href="/">Upload documents</Button>
+					<br />
 				</Content>
 			  </Layout>
 			</Layout>

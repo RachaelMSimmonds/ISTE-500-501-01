@@ -24,6 +24,9 @@ import User from './user/user';
 import PassStore from './user/passStore';
 import UserPasses from './user/userPass';
 import AccountSettings from './user/accountSettings';
+import ConfirmEmail from './user/confirmEmail';
+import PassApp1 from './user/passApp1';
+import PassApp2 from './user/passApp2';
 import logo from './logo.svg';
 import './App.css';
 
@@ -46,6 +49,9 @@ function App(){
 	  				<Route path="/userportal/userpass/:id"><UserPasses /></Route>
 	  				<Route path="/userportal/passstore/:id"><PassStore /></Route>
 	  				<Route exact path="/userportal/accountsettings/:id"><AccountSettings /></Route>
+	  				<Route path="/userportal/accountsettings/confirmemail/:id"></Route>
+	  				<Route path="/userportal/accountsettings/passapp1/:id"></Route>
+	  				<Route path="/userportal/accountsettings/passapp2/:id"></Route>
                     <Route path="/confirmpassword"><ConfirmPassword /> </Route>
                     <Route path="/passwordResetReq"><PasswordResetReq /></Route> 
                     <Route path="/changePassword"><ChangePassword /></Route>
