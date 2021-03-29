@@ -32,6 +32,7 @@ import './App.css';
 
 
 function App(){
+	console.log(ConfirmEmail);
   return (
     	<Router>
 	  		<div>
@@ -49,9 +50,9 @@ function App(){
 	  				<Route path="/userportal/userpass/:id"><UserPasses /></Route>
 	  				<Route path="/userportal/passstore/:id"><PassStore /></Route>
 	  				<Route exact path="/userportal/accountsettings/:id"><AccountSettings /></Route>
-	  				<Route path="/userportal/accountsettings/confirmemail/:id"><ConfirmEmail /></Route>
-	  				<Route path="/userportal/accountsettings/passapp1/:id"><PassApp1 /></Route>
-	  				<Route path="/userportal/accountsettings/passapp2/:id"><PassApp2 /></Route>
+	  				<Route exact path="/userportal/accountsettings/confirmemail/:id"><ConfirmEmail /></Route>
+	  				<Route exact path="/userportal/accountsettings/passapp1/:id"><PassApp1 /></Route>
+	  				<Route exact path="/userportal/accountsettings/passapp2/:id"><PassApp2 /></Route>
                     <Route path="/confirmpassword"><ConfirmPassword /> </Route>
                     <Route path="/passwordResetReq"><PasswordResetReq /></Route> 
                     <Route path="/changePassword"><ChangePassword /></Route>

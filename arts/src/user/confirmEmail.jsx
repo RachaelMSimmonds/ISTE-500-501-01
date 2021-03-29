@@ -17,8 +17,17 @@ import "./../index.css";
 //wireframes 11 &12
 function ConfirmEmail(){
 	const form = Form.useForm();
+	
+	const onFinish = (values) => {
+    	console.log('Received values of form: ', values);
+  	};
 	return(<div>
-			<Form form ={form}>
+			<Form 
+				form ={form}
+				name="confirmemail"
+				onFinish={onFinish}
+				scrollToFirstError
+				>
 				<Form.Item
 					name="email"
         			label="Email Address: "
@@ -31,7 +40,7 @@ function ConfirmEmail(){
 				<Form.Item
 					name="confirm"
         			label="Confirm Email Address: "
-					dependencies={['password']}
+					dependencies={['email']}
 					hasFeedback
         			rules={[
 					  {
