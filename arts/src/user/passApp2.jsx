@@ -20,7 +20,11 @@ function PassApp2(){
 	let params = useParams();
 	let id = params.id;
 	
-	return(<div></div>);
+	return(<div>
+			<Button type='primary'>Upload Document</Button>
+			<br />
+			<Button type='link' href={'/userportal/'+id}>Submit</Button>
+		</div>);
 }
 
 export default PassApp2;
