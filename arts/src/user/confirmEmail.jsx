@@ -16,7 +16,9 @@ import "./../index.css";
 
 //wireframes 11 &12
 function ConfirmEmail(){
+
 	const form = Form.useForm();
+
 	return(<div>
 			<Form form ={form}>
 				<Form.Item
