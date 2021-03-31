@@ -45,7 +45,7 @@ function User(){
 					minHeight: 280,
 				  }}
 				>
-				  Landing page for User
+				  Welcome User! You current passes and availble passes are avalible on the right.
 				</Content>
 			  </Layout>
 			</Layout>
