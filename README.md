@@ -17,12 +17,20 @@
 ---
 
 ### Required packages
+#### Front End
 - npm install
 - npm install npx
 - npm install react
 - npm install react-dom
 - npm install antd
 - npm install react-router-dom
+#### Back End
+- npm install
+- npm install node 
+- npm install express
+- npm install dotenv
+- npm install mysql
+- npm install jsonwebtoken
 
 ### Default localhost port is 3000
 - To compile: **npm run build** in the *arts* folder to compile
