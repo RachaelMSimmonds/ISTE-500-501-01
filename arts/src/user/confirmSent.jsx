@@ -5,7 +5,12 @@ import "./index.css";
 
 //wireframe 13
 function ConfirmationSent(){
-	return (<div></div>)
+	let params = useParams();
+	let id = params.id;
+	return (<div>
+			<h1>Your email has been confirmed</h1>
+			<Button type='primary' href={'/userportal/'+id}>Home</Button>
+		</div>)
 }
 
 export default ConfirmationSent;

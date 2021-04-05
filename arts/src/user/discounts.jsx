@@ -5,7 +5,8 @@ import "./index.css";
 
 //wireframe 25
 function DiscountsAvailible(){
-	return(<div></div>);
+	return(<div>
+		</div>);
 }
 
 export default DiscountsAvailible;
