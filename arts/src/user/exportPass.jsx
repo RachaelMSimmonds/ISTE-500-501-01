@@ -5,7 +5,9 @@ import "./index.css";
 
 //wireframe 16
 function exportPass(){
-	return(<div></div>);
+	return(<div>
+			<h2>Placeholder for exported pass</h2>
+		</div>);
 }
 
 export default exportPass;
