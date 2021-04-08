@@ -18,9 +18,6 @@ ReactDOM.render(
 );
 
 //import React from 'react';
-//
-//import './index.css';
-//
 //import reportWebVitals from './reportWebVitals';
 
 
