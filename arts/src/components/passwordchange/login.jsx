@@ -8,6 +8,22 @@ import "antd/dist/antd.css";
 
 function Login(){
 
+	// Variable Declarations
+	let history = useHistory();
+	let location = useLocation();
+	let auth = useAuth();
+
+	// Get Pathname State Value
+	let { from } = location.state || { from: { pathname: "/"} };
+
+	// login function
+	let login = (values) => {
+		auth.signin(values.get('username'),values.get('password') = () => {
+			history.replace(from);
+		});
+	};
+
+	// Layout adjustments
 	const layout = {
 		labelCol: {
 		  span: 8,
@@ -16,6 +32,8 @@ function Login(){
 		  span: 16,
 		},
 	  };
+
+	  // TailLayout adjustments
 	  const tailLayout = {
 		wrapperCol: {
 		  offset: 8,
@@ -24,7 +42,8 @@ function Login(){
 	  };
 	  
 		const onFinish = (values) => {
-		  console.log('Success:', values);
+		  // console.log('Success:', values);
+		  values.get("username")
 		};
 	  
 		const onFinishFailed = (errorInfo) => {
@@ -34,6 +53,9 @@ function Login(){
 		return (
 			<div className = "login" >
 				<LandingNav />
+
+				<p>Please sign in your account before you access the page at {from.pathname}</p>
+
 				<div>
 				<Form
 					{...layout}
@@ -74,7 +96,7 @@ function Login(){
 					</Form.Item>
 			
 					<Form.Item {...tailLayout}>
-					<Button type="primary" htmlType="submit" >
+					<Button type="primary" htmlType="submit" onClick={login} >
 						Submit
 					</Button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
