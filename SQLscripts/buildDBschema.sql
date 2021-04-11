@@ -12,8 +12,7 @@ CREATE TABLE users (
     firstName varchar(25) NOT NULL,
     lastName varchar(25) NOT NULL,
     email varchar(50),
-    /*accountType enum("basic", "admin") NOT NULL,*/
-    phone varchar(11),
+    phone varchar(12),
     address1 varchar(50),
     address2 varchar(50),
     city varchar(50),
@@ -28,7 +27,7 @@ CREATE TABLE organizations (
     orgDesc text,
     website varchar(255),
     address1 varchar(50) NOT NULL,
-    address2 varchar(50) NOT NULL,
+    address2 varchar(50),
     city varchar(50) NOT NULL,
     state char(2),
     zipcode char(5),
@@ -52,8 +51,8 @@ CREATE TABLE login (
 CREATE TABLE passes (
     passId int NOT NULL AUTO_INCREMENT,
     passTypeName varchar(25),
-    dateCreated timestamp NOT NULL,
-    dateExpires timestamp NOT NULL,
+    dateCreated timestamp DEFAULT(current_timestamp()),
+    dateExpires timestamp,
     PRIMARY KEY (passId),
     FOREIGN KEY (passTypeName) REFERENCES passType(passTypeName)
 );
