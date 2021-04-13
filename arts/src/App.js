@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Component } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router,
@@ -12,7 +12,10 @@ import { Text } from 'react';
 import { Input, Space } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import Cookies from 'js-cookie'
-
+import axios from 'axios';
+import PrivateRoute from './components/services/PrivateRoute'
+import PublicRoute from './components/services/PublicRoute'
+import { getToken, removeUserSession, setUserSession } from './components/services/Common'
 import Login from './components/passwordchange/login';
 import Registration from './components/navigation/registration';
 import AdminRegistration from './components/admin/adminRegistration';
@@ -38,143 +41,68 @@ import './App.css';
 
 
 function App(){
-  return (
-		<ProvideAuth>
-			<Router>
-				<div>
-					<Switch>
-						
-						{/* Public */}
-						<Route exact path = "/"><Landing /></Route>
-						<Route path="/login"><Login /></Route>
-						<Route path="/registration"><Registration /></Route> 
-						<Route path="/adminRegistration"><AdminRegistration /></Route>
+  
+	const [authLoading, setAuthLoading] = useState(true);
 
-						{/* Private */}
-						<PrivateRoute path="/adminPortal/:id"><AdminPortal /></PrivateRoute>
-						<PrivateRoute path="/dataAnalytics/:id"><DataAnalytics /></PrivateRoute>
-						<PrivateRoute path="/passManagement/:id"><PassManagement /></PrivateRoute>
-						<PrivateRoute path="/userManagement/:id"><UserManagement /></PrivateRoute>
-						<PrivateRoute path="/passAccepted/:id"><PassAccepted /></PrivateRoute>
-						<PrivateRoute exact path="/userportal/:id"><User /></PrivateRoute>
-						<PrivateRoute path="/userportal/userpass/:id"><UserPasses /></PrivateRoute>
-						<PrivateRoute path="/userportal/passstore/:id"><PassStore /></PrivateRoute>
-						<PrivateRoute exact path="/userportal/accountsettings/:id"><AccountSettings /></PrivateRoute>
-						<PrivateRoute exact path="/userportal/accountsettings/confirmemail/:id"><ConfirmEmail /></PrivateRoute>
-						<PrivateRoute exact path="/userportal/accountsettings/confirmedemail/:id"><ConfirmEmail /></PrivateRoute>
-						<PrivateRoute exact path="/userportal/accountsettings/passapp1/:id"><PassApp1 /></PrivateRoute>
-						<PrivateRoute exact path="/userportal/accountsettings/passapp2/:id"><PassApp2 /></PrivateRoute>
-						<PrivateRoute path="/confirmpassword"><ConfirmPassword /> </PrivateRoute>
-						<PrivateRoute path="/passwordResetReq"><PasswordResetReq /></PrivateRoute> 
-						<PrivateRoute path="/changePassword"><ChangePassword /></PrivateRoute>
+	useEffect(() => {
+		const token = getToken();
+		if (!token) {
+		  return;
+		}
+	 
+		axios.get(`http://localhost:5000/verifyToken?token=${token}`).then(response => {
+			console.log("authorized!");
+			setUserSession(response.data.token, response.data.user);
+			setAuthLoading(false);
+		}).catch(error => {
+		  	if (!error.response){
+				console.log(error);
+			  }else {
+				console.log(error.response.status);
+				removeUserSession();
+				setAuthLoading(false);  
+			  }
+		});
+	}, []);
 
-					</Switch>
-				</div>
-	  		</Router>
-		</ProvideAuth>
+	if (authLoading && getToken()) {
+		return console.log('Checking Authentication...');
+	}
+	
+	return (
+		<Router>
+			<div>
+				<Switch>
+					
+					{/* Public */}
+					<Route exact path = "/" component={Landing}><Landing /></Route>
+					<PublicRoute path="/login" component={Login}><Login /></PublicRoute>
+					<PublicRoute path="/registration" component={Registration}><Registration /></PublicRoute> 
+					<PublicRoute path="/adminRegistration"  component={AdminRegistration}><AdminRegistration /></PublicRoute>
+
+					{/* Private */}
+					<PrivateRoute path="/adminPortal" component={AdminPortal}><AdminPortal /></PrivateRoute>
+					<PrivateRoute path="/adminPortal/:id"><AdminPortal /></PrivateRoute>
+					<PrivateRoute path="/dataAnalytics/:id"><DataAnalytics /></PrivateRoute>
+					<PrivateRoute path="/passManagement/:id"><PassManagement /></PrivateRoute>
+					<PrivateRoute path="/userManagement/:id"><UserManagement /></PrivateRoute>
+					<PrivateRoute path="/passAccepted/:id"><PassAccepted /></PrivateRoute>
+					<PrivateRoute path="/userportal/:id"><User /></PrivateRoute>
+					<PrivateRoute path="/userportal/userpass/:id"><UserPasses /></PrivateRoute>
+					<PrivateRoute path="/userportal/passstore/:id"><PassStore /></PrivateRoute>
+					<PrivateRoute path="/userportal/accountsettings/:id"><AccountSettings /></PrivateRoute>
+					<PrivateRoute path="/userportal/accountsettings/confirmemail/:id"><ConfirmEmail /></PrivateRoute>
+					<PrivateRoute path="/userportal/accountsettings/confirmedemail/:id"><ConfirmEmail /></PrivateRoute>
+					<PrivateRoute path="/userportal/accountsettings/passapp1/:id"><PassApp1 /></PrivateRoute>
+					<PrivateRoute path="/userportal/accountsettings/passapp2/:id"><PassApp2 /></PrivateRoute>
+					<PrivateRoute path="/confirmpassword" component={ConfirmPassword}><ConfirmPassword /> </PrivateRoute>
+					<PrivateRoute path="/passwordResetReq" component={PasswordResetReq}><PasswordResetReq /></PrivateRoute> 
+					<PrivateRoute path="/changePassword" component={ChangePassword}><ChangePassword /></PrivateRoute>
+
+				</Switch>
+			</div>
+		</Router>
   );
 }
-
-// fake authenication for testing
-const fakeAuth = {
-	isAuthenticated: false,
-	signin(cb) {
-	  fakeAuth.isAuthenticated = true;
-	  setTimeout(cb, 100); // fake async
-	},
-	signout(cb) {
-	  fakeAuth.isAuthenticated = false;
-	  setTimeout(cb, 100);
-	}
-};
-
-// API Request Options Setup Example
-const requestOptions = {
-	method: 'POST',
-	headers: { 'Content-Type': 'application/json'},
-	body: JSON.stringify({ title: 'Empty' })
-};
-
-
-// ProvideAuth wrapper
-function ProvideAuth({ children }){
-	const auth = useProvideAuth();
-	return  (
-		<authContext.Provider value={auth}>
-			{children}
-		</authContext.Provider>
-	)
-}
-
-// useAuth
-function useAuth(){
-	return useContext(authContext);
-}//end useAuth
-
-// useProvideAuth
-function useProvideAuth() {
-	const [user, setUser] = useState(null);
-  
-	// signin
-	const signin = (username, password) => {
-	  	
-		const requestOptions = {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json'},
-			body: JSON.stringify({ username, password})
-		};
-		const response = await fetch('/login/', requestOptions);
-		const data = await response.json();
-
-		if (!data.ok){
-			// Fail
-			console.log('Failed logging')
-		} else{
-			// Success
-			console.log('Successful')
-			setUser(response.user)
-			// Save a token into cookies!
-			Cookies.set(response.user)
-		}
-
-		cb();
-	};//end signin
-	
-	// signout
-	const signout = cb => {
-	  return fakeAuth.signout(() => {
-		setUser(null);
-		cb();
-	  });
-	};//end signout
-  
-	return {
-	  user,
-	  signin,
-	  signout
-	};
-}//end useProvideAuth
-
-// PrivateRoute wrapper
-function PrivateRoute({ children, ...rest }) {
-	let auth = useAuth();
-	return (
-	  <Route
-		{...rest}
-		render={({ location }) =>
-		  auth.user ? (
-			children
-		  ) : (
-			<Redirect
-			  to={{
-				pathname: "/login",
-				state: { from: location }
-			  }}
-			/>
-		  )
-		}
-	  />
-	);
-  }
 
 export default App;

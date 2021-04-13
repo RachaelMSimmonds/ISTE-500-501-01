@@ -107,7 +107,7 @@ function onChange(pagination, filters, sorter, extra) {
 }
 
 //wireframe 19
-function DataAnalytics(){
+function DataAnalytics(props){
 	return(
 	<div>
  <Layout style={{ minHeight: '100vh' }}>

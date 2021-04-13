@@ -17,7 +17,7 @@ import {
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import LandingNav from "../navigation/landingNav";
 
-function AdminRegistration() {
+function AdminRegistration(props) {
 
     const { Option } = Select;
 

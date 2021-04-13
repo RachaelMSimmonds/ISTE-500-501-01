@@ -1,22 +1,25 @@
 import React from "react";
+import { removeUserSession, getUser } from '../services/Common';
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
+import { OmitProps } from "antd/lib/transfer/ListBody";
 
 
 function AuthButton(){
-    let history = useHistory();
-    let auth = useAuth();
+    
+    const user = getUser();
 
     // execute when Sign In button is clicked
-    const action = (() => {
-        auth.signout(() => history.push("/"))
+    const logout = (() => {
+        removeUserSession();
+        history.push('/');
     });
 
     return auth.user ? ( // User exists
-        <Button type="primary" onClick={action}>Sign out</Button>
+        <Button type="primary" onClick={logout}>Sign out</Button>
     ) : ( // User not exists
         <Button type="primary">Sign In</Button>
     );

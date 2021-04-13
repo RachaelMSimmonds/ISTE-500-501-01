@@ -25,7 +25,7 @@ const { Paragraph } = Typography;
   
 
 //wireframe 18
-function AdminPortal(){
+function AdminPortal(props){
   
 	return(
     <div>

@@ -1,27 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import axios from 'axios';
+import { setUserSession } from '../services/Common';
 import { Input, Space } from 'antd';
 import { Form, Button, Checkbox } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import LandingNav from "../navigation/landingNav";
 import "antd/dist/antd.css";
 
-function Login(){
+function Login(props){
 
-	// Variable Declarations
-	let history = useHistory();
-	let location = useLocation();
-	let auth = useAuth();
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
 
-	// Get Pathname State Value
-	let { from } = location.state || { from: { pathname: "/"} };
-
-	// login function
-	let login = (values) => {
-		auth.signin(values.get('username'),values.get('password') = () => {
-			history.replace(from);
-		});
-	};
+	// handle button click of login form
+	const login = (values) => {
+			//console.log(values);
+			setError(null);
+			setLoading(true);
+			
+			axios.post('http://localhost:5000/user/signin', { username: values.username, password: values.password })
+			.then(response => {
+				setLoading(false);
+				setUserSession(response.data.token, response.data.user);
+      			props.history.push('/');
+			}).catch(error => {
+				
+				if (!error.response){
+					console.log(error);
+				} else{
+					setLoading(false);
+					if (error.response.status === 401) setError(error.response.data.message);
+					else setError("Something went wrong. Please try again later.");
+				}
+			});
+	  }
 
 	// Layout adjustments
 	const layout = {
@@ -43,7 +56,8 @@ function Login(){
 	  
 		const onFinish = (values) => {
 		  // console.log('Success:', values);
-		  values.get("username")
+		  //values.get("username")
+		  login(values);
 		};
 	  
 		const onFinishFailed = (errorInfo) => {
@@ -54,8 +68,6 @@ function Login(){
 			<div className = "login" >
 				<LandingNav />
 
-				<p>Please sign in your account before you access the page at {from.pathname}</p>
-
 				<div>
 				<Form
 					{...layout}
@@ -63,7 +75,7 @@ function Login(){
 					initialValues={{
 					remember: true,
 					}}
-					onFinish={onFinish}
+					onFinish={login}
 					onFinishFailed={onFinishFailed}>
 					<Form.Item
 					label="Username"
@@ -96,7 +108,7 @@ function Login(){
 					</Form.Item>
 			
 					<Form.Item {...tailLayout}>
-					<Button type="primary" htmlType="submit" onClick={login} >
+					<Button type="primary" htmlType="submit" disabled={loading} >
 						Submit
 					</Button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
