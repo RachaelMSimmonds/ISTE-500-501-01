@@ -23,6 +23,7 @@
 - npm install react
 - npm install react-dom
 - npm install antd
+- npm intall ant-design-pro
 - npm install react-router-dom
 #### Back End
 - npm install
