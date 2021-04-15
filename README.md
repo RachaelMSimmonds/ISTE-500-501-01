@@ -41,8 +41,8 @@
 ### Backend's Default localhost port is 5000
 - To do a full re-installation: 
   1. Delete **node_modules** folder in the *src* folder.
-  2. Delete **package-lock.json** the terminal in the *src* folder.
-  3. Type **npm i** on the terminal in the *src* folder to reinstall packages.
+  2. Delete **package-lock.json** on terminal in the *src* folder.
+  3. Type **npm i** on terminal in the *src* folder to reinstall packages.
 - To launch the webpage **node api.js** in the *src* folder. 
 
 ### Frontend's Default localhost port is 3000
