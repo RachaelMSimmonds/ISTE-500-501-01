@@ -12,6 +12,7 @@ import Login from './login';
 import Registration from './registration';
 import AdminRegistration from './adminRegistration';
 import Landing from './landing';
+import AccessError from './error';
 import AdminPortal from './admin/adminPortal';
 import DataAnalytics from './admin/dataAnalytics';
 import PassManagement from './admin/passManagement';
@@ -59,6 +60,7 @@ function App(){
                     <Route path="/confirmpassword"><ConfirmPassword /> </Route>
                     <Route path="/passwordResetReq"><PasswordResetReq /></Route> 
                     <Route path="/changePassword"><ChangePassword /></Route>
+					<Route path="/error"><AccessError /></Route>
 	  			</Switch>
 	  		</div>
 	  	</Router>
