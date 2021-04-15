@@ -1,15 +1,16 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, useHistory, useLocation } from 'react-router-dom';
 import { getToken } from './Common';
  
 // handle the public routes
-function PublicRoute({ component: Component, ...rest }) {
+function PublicRoute({ children, ...rest }) {
   return (
     <Route
       {...rest}
-      render={(props) => !getToken() ? <Component {...props} /> : <Redirect to={{ pathname: '/' }} />}
+      render={({ location }) => !getToken() ? 
+      children : <Redirect to={{ pathname: '/' }} />}
     />
-  )
+  );
 }
  
 export default PublicRoute;

@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { getToken, removeUserSession, setUserSession, getErrorSession } from '../services/Common'
 import "antd/dist/antd.css";
 
-//wireframe 26
 function AccessError(){
-	return(<div></div>);
+	return (
+		<div></div>
+	);
 }
 
 export default AccessError;

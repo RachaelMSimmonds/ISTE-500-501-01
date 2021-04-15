@@ -15,9 +15,9 @@ import {
   AutoComplete,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import LandingNav from "../navigation/landingNav";
+import AdminSidebar from '../navigation/admSidebar';
 
-function AdminRegistration(props) {
+function AdminRegistration() {
 
     const { Option } = Select;
 
@@ -74,7 +74,6 @@ const tailFormItemLayout = {
 
     return(
 		<div>
-			<LandingNav />
         <div style={{paddingRight: 500}}>
             <Form
       {...formItemLayout}

@@ -1,13 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
-import LandingNav from "./landingNav";
 import "antd/dist/antd.css";
+import { 
+	getToken, 
+	removeUserSession, 
+	getUserSession,
+	setUserSession, 
+	setErrorSession, 
+	getErrorSession } from '../services/Common';
 
-function Landing(){
+function HomeLayout(){
+
 	return(
 		<div>
-			<LandingNav />
 			<div style={{textAlign:"center"}}>
 				<h1>Welcome</h1>
 				<br />
@@ -17,4 +23,4 @@ function Landing(){
 	);
 }
 
-export default Landing;
+export default HomeLayout;

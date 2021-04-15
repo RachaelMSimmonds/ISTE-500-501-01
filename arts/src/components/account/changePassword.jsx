@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import {Input, Form, Button, Tooltip} from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
-import LandingNav from "../navigation/landingNav";
 
 //wireframe 6
 function ChangePassword(){
@@ -42,7 +41,6 @@ function ChangePassword(){
 
     return ( 
         <div >
-            <LandingNav />
             <h1 style={{paddingLeft: 500}}>Please Enter New Password</h1>
             <div style={{paddingRight: 500}}>
                 <Form

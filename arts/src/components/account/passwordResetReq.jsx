@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {Form, Input, Button} from 'antd';
 import "antd/dist/antd.css";
-import LandingNav from "../navigation/landingNav";
 
 
 //wireframe 5
 function PasswordResetReq(){
-    const layout = {
+	
+	const layout = {
 		labelCol: {
 		  span: 8,
 		},
@@ -39,7 +39,6 @@ function PasswordResetReq(){
       };
 	return(
         <div >
-            <LandingNav />
             <h1 style={{paddingLeft: 500}}>Please Enter Email to Reset Password</h1>
         <div style={{paddingRight: 500}}>
         <Form

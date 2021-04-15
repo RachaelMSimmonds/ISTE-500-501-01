@@ -1,9 +1,19 @@
 
+export const getErrorSession = () => {
+  return sessionStorage.getItem('error') || null;
+}
+
+export const setErrorSession = (message) => {
+  sessionStorage.setItem('error', message);
+}
+
 // return the user data from the session storage
-export const getUser = () => {
+export const getUserSession = () => {
   const userStr = sessionStorage.getItem('user');
-  if (userStr) return JSON.parse(userStr);
-  else return null;
+  if (userStr) 
+    return JSON.parse(userStr.name);
+  else 
+    return null;
 }
  
 // return the token from the session storage

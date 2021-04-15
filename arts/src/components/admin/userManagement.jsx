@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
+import AdminSidebar from '../navigation/admSidebar';
 import {Layout, Menu, Icon, Breadcrumb, Button} from "antd";
 import {
   DesktopOutlined,
@@ -18,30 +19,8 @@ function UserManagement(){
 	<div>
 		 <Layout style={{ minHeight: '100vh' }}>
        
-        <Sider >
-        
-          <div className="logo" />
-          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-
-            <Menu.Item key="2" icon={<DesktopOutlined />}>
-              <Button type="link" href="/adminPortal/1">Dashboard</Button>    
-            </Menu.Item>
-
-            <Menu.Item key="2" icon={<PieChartOutlined />}>
-            <Button type="link" href="/dataAnalytics/1">Data Analytics</Button> 
-            </Menu.Item>
-
-            <Menu.Item key="2" icon={<ClusterOutlined />}>
-            <Button type="link" href="/passManagement/1">Pass Submissions</Button> 
-            </Menu.Item>
-
-            <Menu.Item key="1" icon={<SettingOutlined />}>
-            <Button type="link" href="/userManagement/1"> User Management</Button>
-            </Menu.Item>
-
-          </Menu>
-          
-        </Sider>
+        {/* Renders Admin Sidebar component */}
+        < AdminSidebar />
         
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }} />

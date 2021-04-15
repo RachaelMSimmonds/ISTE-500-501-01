@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 
-// generate token using secret from process.env.JWT_SECRET
+// generate token using secret from process.env.TOKEN_SECRET
 var jwt = require('jsonwebtoken');
  
 // generate token and return it
@@ -11,9 +11,8 @@ function generateToken(user) {
  
   var u = {
     userId: user.userId,
-    name: user.name,
     username: user.username,
-    isAdmin: user.isAdmin
+    name: user.name,
   };
  
   return jwt.sign(u, process.env.TOKEN_SECRET, {
@@ -27,9 +26,8 @@ function getCleanUser(user) {
  
   return {
     userId: user.userId,
-    name: user.name,
     username: user.username,
-    isAdmin: user.isAdmin
+    name: user.name,
   };
 }
  

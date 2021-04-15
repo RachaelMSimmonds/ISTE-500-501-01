@@ -2,11 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {Input, Button} from 'antd';
 import "antd/dist/antd.css";
-import LandingNav from "../navigation/landingNav";
 
 //wireframe 7
 function ConfirmPassword(){
-    const layout = {
+    
+	const {API_URL , PUBLIC_URL} = process.env;
+	
+	const layout = {
 		labelCol: {
 		  span: 8,
 		},
@@ -27,9 +29,8 @@ function ConfirmPassword(){
 
 	  
 	return(<div>
-            <LandingNav />
             <h1 style={{paddingLeft: 500}}>Thank You for Changing Your Password</h1>
-            <Button type="primary" href="http://localhost:3000/login">
+            <Button type="primary" href={"http://" + {API_URL} + "/login"}>
                 Login!
             </Button>
         </div>);

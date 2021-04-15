@@ -2,14 +2,17 @@ const express = require("express");
 const cors = require('cors');
 const dotenv = require("dotenv");
 const util = require('../utility');
-const model = require('../models/user');
+const model = require('../models/user.js');
 const bodyParser = require('body-parser');
 let router = express.Router();
 
 router.use(cors());
 router.use(bodyParser.json());
-  
-// generate token using secret from process.env.JWT_SECRET
+
+// static user details
+const userData = model.getUserData();
+
+// generate token using secret from process.env.TOKEN_SECRET
 var jwt = require('jsonwebtoken');
 
 router.post("/signin", (req, res) => {
@@ -40,13 +43,5 @@ router.post("/signin", (req, res) => {
     // return the token along with user details
     return res.json({ user: userObj, token });
 });
-
-// static user details
-const userData = {
-    userId: "1",
-    username: "admin",
-    password: "password",
-    name: "Vinny Venutolo",
-  };
 
 module.exports = router;

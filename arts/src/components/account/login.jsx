@@ -1,40 +1,48 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import axios from 'axios';
+import { useHistory, useLocation } from 'react-router-dom';
+import ReactDOM from "react-dom";
 import { setUserSession } from '../services/Common';
-import { Input, Space } from 'antd';
-import { Form, Button, Checkbox } from 'antd';
+import { Form, Button, Checkbox, Input, Typography, Space } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import LandingNav from "../navigation/landingNav";
 import "antd/dist/antd.css";
 
-function Login(props){
+function Login(){
 
+	let history = useHistory();
+	let location = useLocation();
+	const {REACT_APP_API_URL, REACT_APP_PUBLIC_URL} = process.env;
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
 
 	// handle button click of login form
 	const login = (values) => {
-			//console.log(values);
+			//console.log(REACT_APP_API_URL+'/user/signin');
 			setError(null);
 			setLoading(true);
 			
-			axios.post('http://localhost:5000/user/signin', { username: values.username, password: values.password })
+			axios.post(REACT_APP_API_URL+'/user/signin', { username: values.username, password: values.password })
 			.then(response => {
 				setLoading(false);
 				setUserSession(response.data.token, response.data.user);
-      			props.history.push('/');
+      			history.push('/');
 			}).catch(error => {
 				
 				if (!error.response){
 					console.log(error);
 				} else{
 					setLoading(false);
-					if (error.response.status === 401) setError(error.response.data.message);
+					if (error.response.status === 401){
+						setError(error.response.data.message);
+					}
 					else setError("Something went wrong. Please try again later.");
 				}
 			});
-	  }
+		}
+
+
+	// Antd Declarations
+	const { Text, Link } = Typography;
 
 	// Layout adjustments
 	const layout = {
@@ -53,6 +61,10 @@ function Login(props){
 		  span: 16,
 		},
 	  };
+
+	  const getError = () =>{
+		  return error;
+	  }
 	  
 		const onFinish = (values) => {
 		  // console.log('Success:', values);
@@ -62,12 +74,10 @@ function Login(props){
 	  
 		const onFinishFailed = (errorInfo) => {
 		  console.log('Failed:', errorInfo);
-		};
-	  
+		};	  
 		return (
+			
 			<div className = "login" >
-				<LandingNav />
-
 				<div>
 				<Form
 					{...layout}
@@ -77,6 +87,11 @@ function Login(props){
 					}}
 					onFinish={login}
 					onFinishFailed={onFinishFailed}>
+
+					<Form.Item {...tailLayout}>
+							<Text type="danger" strong> {getError()} </Text>
+					</Form.Item>
+
 					<Form.Item
 					label="Username"
 					name="username"
@@ -87,9 +102,10 @@ function Login(props){
 						},
 					]}
 					>
+					
 					<Input />
 					</Form.Item>
-			
+					
 					<Form.Item
 					label="Password"
 					name="password"

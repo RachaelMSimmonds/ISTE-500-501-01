@@ -2,13 +2,16 @@ const express = require("express");
 const dotenv = require("dotenv");
 const mysql = require("mysql");
 const cors = require('cors');
+const model = require('./models/user');
+const util = require('./utility');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 
 const user = require("./routes/user");
 const pass = require("./routes/pass");
 
-
+// static user details
+const userData = model.getUserData();
 const app = express();
 const port = 5000;
 dotenv.config();
@@ -67,21 +70,22 @@ app.get('/verifyToken', function (req, res) {
       });
     }
     // check token that was passed by decoding token using secret
-    jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
+    jwt.verify(token, process.env.TOKEN_SECRET, function (err, user) {
       if (err) return res.status(401).json({
         error: true,
         message: "Invalid token."
       });
    
       // return 401 status if the userId does not match.
-      if (user.userId !== userData.userId) {
+      if (userData.userId !== userData.userId) {
+        console.log("Error 401: " + user);
         return res.status(401).json({
           error: true,
           message: "Invalid user."
         });
       }
       // get basic user details
-      var userObj = utils.getCleanUser(userData);
+      var userObj = util.getCleanUser(userData);
       return res.json({ user: userObj, token });
     });
   });
