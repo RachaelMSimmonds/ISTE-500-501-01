@@ -2,20 +2,52 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./../index.css";
-import {Layout, Menu, Table, Card, Col, Row, Statistic, Button} from "antd";
+import {Layout, Menu, Select, Button} from "antd";
 import {
   DesktopOutlined,
   PieChartOutlined,
   ClusterOutlined,
   SettingOutlined,
-  LikeOutlined,
-  ArrowUpOutlined, 
-  ArrowDownOutlined
 } from "@ant-design/icons"
-import Charts from 'ant-design-pro/lib/Charts';
-import { Pie, yuan } from 'ant-design-pro/lib/Charts';
+import { Pie } from 'ant-design-pro/lib/Charts';
+import { Typography } from 'antd';
 
-const analytics1 = [
+const { Title } = Typography;
+
+const { Option } = Select;
+
+function onChange(value) {
+  console.log(`selected ${value}`);
+}
+
+function onBlur() {
+  console.log('blur');
+}
+
+function onFocus() {
+  console.log('focus');
+}
+
+function onSearch(val) {
+  console.log('search:', val);
+}
+
+const analyticOptions = [
+  {
+    code: 'age',
+    name: 'age',
+  },
+  {
+    code: 'race',
+    name: 'race',
+  },
+  {
+    code: 'gender',
+    name: 'gender',
+  },
+]
+
+const ageAnalytics = [
   {
     x: 'Age 0-12',
     y: 4544,
@@ -42,9 +74,62 @@ const analytics1 = [
   },
 ];
 
+const raceAnalytics = [
+  {
+    x: 'White/Caucasian',
+    y: 4544,
+  },
+  {
+    x: 'Hispanic',
+    y: 3321,
+  },
+  {
+    x: 'Black/African American',
+    y: 3113,
+  },
+  {
+    x: 'Asian',
+    y: 2341,
+  },
+  {
+    x: 'Native American',
+    y: 1231,
+  },
+  {
+    x: 'Pacific Islander',
+    y: 1231,
+  },
+  {
+    x: 'Other',
+    y: 121,
+  },
+];
+
+const genderAnalytics = [
+  {
+    x: 'Female',
+    y: 4544,
+  },
+  {
+    x: 'Male',
+    y: 3321,
+  },
+  {
+    x: 'Transgender',
+    y: 3113,
+  },
+  {
+    x: 'Non-Binary',
+    y: 3113,
+  },
+  {
+    x: 'Other',
+    y: 2341,
+  },
+];
+
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
-
 
 //wireframe 19
 function DataAnalytics(){
@@ -82,7 +167,7 @@ function DataAnalytics(){
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb> */}
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              Data Analytics will be here.
+            <Title>Data Analytics</Title>
               <Pie
                 hasLegend
                 title="Age Data Analytics"
@@ -90,14 +175,42 @@ function DataAnalytics(){
                 total={() => (
                   <span
                     dangerouslySetInnerHTML={{
-                      __html: (analytics1.reduce((pre, now) => now.y + pre, 0)),
+                      __html: (ageAnalytics.reduce((pre, now) => now.y + pre, 0)),
                     }}
                   />
                 )}
-                data={analytics1}
+                data={ageAnalytics}
                 //valueFormat={val => <span dangerouslySetInnerHTML={{ __html: (val) }} />}
                 height={500}
               />
+              <Title level={4}>Select which data you would like to view: </Title>
+              <Select
+                showSearch
+                style={{ width: 200 }}
+                placeholder="Select a person"
+                optionFilterProp="children"
+                onChange={onChange}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                onSearch={onSearch}
+                filterOption={(input, option) =>
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                }
+              >
+                <Option value="age">Age</Option>
+                <Option value="race">Race</Option>
+                <Option value="gender">Gender</Option>
+              </Select>,
+              <br></br>
+              <br></br>
+              <br></br>
+                <Button type="primary">
+                  DOWNLOAD REPORT
+                </Button>
+              
+                <Button type="primary" danger>
+                  RESET
+                </Button>
 
             </div>
           </Content>

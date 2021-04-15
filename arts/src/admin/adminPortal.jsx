@@ -10,6 +10,8 @@ import {
   SettingOutlined,
 } from "@ant-design/icons"
 
+
+const { Title } = Typography;
 const { Header, Content, Footer, Sider } = Layout;
 const { Paragraph } = Typography;
 
@@ -62,6 +64,7 @@ function AdminPortal(){
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb> */}
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+            <Title>Admin Portal</Title>
               <PageHeader title="Welcome" className="site-page-header" subTitle="User 1"></PageHeader>
               Dashboard/Homepage for admin. Welcome will go here.
               <Paragraph>

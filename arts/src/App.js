@@ -17,6 +17,7 @@ import DataAnalytics from './admin/dataAnalytics';
 import PassManagement from './admin/passManagement';
 import UserManagement from './admin/userManagement';
 import PassAccepted from './admin/passAccepted';
+import PassDenied from './admin/passDenied';
 import ConfirmPassword from './passwordchange/confirmPassword';
 import PasswordResetReq from './passwordchange/passwordResetReq';
 import ChangePassword from './passwordchange/changePassword';
@@ -46,6 +47,7 @@ function App(){
 					<Route path="/passManagement/:id"><PassManagement /></Route>
 					<Route path="/userManagement/:id"><UserManagement /></Route>
 					<Route path="/passAccepted/:id"><PassAccepted /></Route>
+					<Route path="/passDenied/:id"><PassDenied /></Route>
 	  				<Route exact path="/userportal/:id"><User /></Route>
 	  				<Route path="/userportal/userpass/:id"><UserPasses /></Route>
 	  				<Route path="/userportal/passstore/:id"><PassStore /></Route>

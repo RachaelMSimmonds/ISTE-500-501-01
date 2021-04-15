@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./../index.css";
-import {Layout, Menu, Icon, Breadcrumb, Button} from "antd";
+import {Layout, Menu, Result, Button} from "antd";
 import {
   DesktopOutlined,
   PieChartOutlined,
@@ -31,7 +31,7 @@ function PassAccepted(){
             <Button type="link" href="/dataAnalytics/1">Data Analytics</Button> 
             </Menu.Item>
 
-            <Menu.Item key="1" icon={<ClusterOutlined />}>
+            <Menu.Item key="2" icon={<ClusterOutlined />}>
             <Button type="link" href="/passManagement/1">Pass Submissions</Button> 
             </Menu.Item>
 
@@ -49,7 +49,17 @@ function PassAccepted(){
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb> */}
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              Pass acceptance and denial will be handled here.
+          
+              <Result
+                status="success"
+                title="Pass Has Been Accepted!"
+                subTitle="An email will be sent to the user to alert them."
+                extra={[
+                  <Button type="primary" key="console">
+                    Home
+                  </Button>,
+                ]}
+              />,
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
