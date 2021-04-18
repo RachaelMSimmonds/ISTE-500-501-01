@@ -29,9 +29,12 @@ module.exports.getUsers = (req, resp) => {
 module.exports.login = (req, resp) => { 
     conn.query(
         "SELECT * FROM `login` WHERE userName = ? AND password = ?",
-        [req[0], req[1]] ,
+        [req.username, req.password] ,
         (error,results,fields) => {
             resp(error, results)
 
 })};
+
+
+
 

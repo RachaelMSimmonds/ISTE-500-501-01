@@ -3,7 +3,6 @@ const cors = require('cors');
 const dotenv = require("dotenv");
 const util = require('../utility');
 const user = require('../models/user.js');
-const bodyParser = require('body-parser');
 let router = express.Router();
 
 
@@ -16,34 +15,59 @@ const userData = user.getUserData();
 // generate token using secret from process.env.TOKEN_SECRET
 var jwt = require('jsonwebtoken');
 
+
+//send post body in json format:
+// {
+//     "username": "username",
+//     "password": "password"
+// }
 router.post("/signin", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-    console.log(username)
+    const creds  = {
+        username: req.body.username,
+        password: req.body.password
+    }
+
+    console.log(creds.username)
 
     // return 400 error if so
-    if (!username || !password){
+    if (!creds.username || !creds.password){
         return res.status(400).json({
             error: true,
             message: "username or password required."
         });
     }
 
-    // return 401 status if the credential is not match.
-    if (username !== userData.username || password !== userData.password) {
-        return res.status(401).json({
-            error: true,
-            message: "Your username or password is Invalid."
-        });
-    }
-    
-    // generate token
-    const token = util.generateToken(userData);
-    // get basic user details
-    const userObj = util.getCleanUser(userData);
-    // return the token along with user details
-    return res.json({ user: userObj, token });
-});
+    //Checks DB to see if entry with inputted credentials exists
+    user.login(creds, (err, results) => {
+        if(err) throw err;
+
+        //returns a 401 status if the credentials don't exist
+        if(results.length == 0){
+            res.status(401).json({
+                        error: true,
+                        message: "Your username or password is Invalid."
+                    });  
+
+        }
+        else{
+            res.json({
+                userId: results[0].userId,
+                username: results[0].userName
+            })
+            //res.send(results)
+            
+            // // generate token
+            // const token = util.generateToken(creds);
+            // // get basic user details
+            // const userObj = util.getCleanUser(userData);
+            // // return the token along with user details
+            // return res.json({ user: userObj, token });
+
+        }   
+
+    })//end of query login
+
+});//end of router login
 
 router.get('/signup', (req, res) => {
     console.log("HERE!")

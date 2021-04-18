@@ -4,11 +4,11 @@ const mysql = require("mysql");
 const cors = require('cors');
 const model = require('./models/user');
 const util = require('./utility');
-//const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 
 const user = require("./routes/user");
 const pass = require("./routes/pass");
+const admin = require("./routes/admin");
 
 // static user details
 const userData = model.getUserData();
@@ -18,6 +18,7 @@ dotenv.config();
 
 app.use("/user", user);
 app.use("/pass", pass);
+app.use("/admin", admin);
 
 // enable CORS
 app.use(cors());
