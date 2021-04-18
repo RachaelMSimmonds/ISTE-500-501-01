@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Component } from "react";
-import { Text } from 'react';
-import { render } from 'react-dom';
+
+import React, { useState, Component, Text } from "react";
+import ReactDOM, { render } from 'react-dom';
 import { BrowserRouter as Router,
   Switch,
   Route,
@@ -18,9 +16,6 @@ ReactDOM.render(
 );
 
 //import React from 'react';
-//
-//import './index.css';
-//
 //import reportWebVitals from './reportWebVitals';
 
 

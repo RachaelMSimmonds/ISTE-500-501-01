@@ -25,6 +25,10 @@
 - npm install antd
 - npm intall ant-design-pro
 - npm install react-router-dom
+- npm install typescript
+- npm install axios
+- npm install js-cookie
+- npm install dotenv
 #### Back End
 - npm install
 - npm install node 
@@ -32,10 +36,19 @@
 - npm install dotenv
 - npm install mysql
 - npm install jsonwebtoken
+- npm install body-parser
+- npm install cors
 
-### Default localhost port is 3000
-- To compile: **npm run build** in the *arts* folder to compile
-- To launch the webpage **npm start** 
+### Backend's Default localhost port is 5000
+- To do a full re-installation: 
+  1. Delete **node_modules** folder in the *src* folder.
+  2. Delete **package-lock.json** on terminal in the *src* folder.
+  3. Type **npm i** on terminal in the *src* folder to reinstall packages.
+- To launch the webpage **node api.js** in the *src* folder. 
+
+### Frontend's Default localhost port is 3000
+- To compile: **npm run build** in the *arts* folder to compile.
+- To launch the webpage **npm start**.
 
 ---
 

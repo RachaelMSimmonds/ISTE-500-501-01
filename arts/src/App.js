@@ -1,69 +1,119 @@
-import React from "react";
-import { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { Component, Text } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router,
-  Switch,
-  Route,
-  Link } from "react-router-dom";
-import { Text } from 'react';
+  	Switch,
+  	Route,
+  	Link,
+	useHistory,
+	useLocation,
+	Redirect } from "react-router-dom";
 import { Input, Space } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import Login from './login';
-import Registration from './registration';
-import AdminRegistration from './adminRegistration';
-import Landing from './landing';
-import AccessError from './error';
-import AdminPortal from './admin/adminPortal';
-import DataAnalytics from './admin/dataAnalytics';
-import PassManagement from './admin/passManagement';
-import UserManagement from './admin/userManagement';
-import PassAccepted from './admin/passAccepted';
-import PassDenied from './admin/passDenied';
-import ConfirmPassword from './passwordchange/confirmPassword';
-import PasswordResetReq from './passwordchange/passwordResetReq';
-import ChangePassword from './passwordchange/changePassword';
-import User from './user/user';
-import PassStore from './user/passStore';
-import UserPasses from './user/userPass';
-import AccountSettings from './user/accountSettings';
-import ConfirmEmail from './user/confirmEmail';
-import ConfirmSent from './user/confirmSent';
-import PassApp1 from './user/passApp1';
-import PassApp2 from './user/passApp2';
+import Cookies from 'js-cookie'
+import axios from 'axios';
+import PrivateRoute from './components/services/PrivateRoute';
+import PublicRoute from './components/services/PublicRoute';
+import { 
+	getToken, 
+	removeUserSession, 
+	getUserSession,
+	setUserSession, 
+	setErrorSession, 
+	getErrorSession } from './components/services/Common';
+import Login from './components/account/login';
+import Registration from './components/account/registration';
+import AdminRegistration from './components/admin/adminRegistration';
+import HomeLayout from './components/layouts/homelayout';
+import NavBar from './components/navigation/navBar';
+import AdminPortal from './components/admin/adminPortal';
+import DataAnalytics from './components/admin/dataAnalytics';
+import PassManagement from './components/admin/passManagement';
+import UserManagement from './components/admin/userManagement';
+import PassAccepted from './components/admin/passAccepted';
+import ConfirmPassword from './components/account/confirmPassword';
+import PasswordResetReq from './components/account/passwordResetReq';
+import ChangePassword from './components/account/changePassword';
+import User from './components/user/user';
+import PassStore from './components/user/passStore';
+import AccessError from './components/navigation/error'
+import UserPasses from './components/user/userPass';
+import AccountSettings from './components/user/accountSettings';
+import ConfirmEmail from './components/user/confirmEmail';
+import ConfirmSent from './components/user/confirmSent';
+import PassApp1 from './components/user/passApp1';
+import PassApp2 from './components/user/passApp2';
 import logo from './logo.svg';
 import './App.css';
 
 
 function App(){
-  return (
-    	<Router>
-	  		<div>
-	  			<Switch>
-	  				<Route exact path = "/"><Landing /></Route>
-	  				<Route path="/login"><Login /></Route>
-					<Route path="/registration"><Registration /></Route> 
-					<Route path="/adminRegistration"><AdminRegistration /></Route> 
-	  				<Route path="/adminPortal/:id"><AdminPortal /></Route>
-					<Route path="/dataAnalytics/:id"><DataAnalytics /></Route>
-					<Route path="/passManagement/:id"><PassManagement /></Route>
-					<Route path="/userManagement/:id"><UserManagement /></Route>
-					<Route path="/passAccepted/:id"><PassAccepted /></Route>
-					<Route path="/passDenied/:id"><PassDenied /></Route>
-	  				<Route exact path="/userportal/:id"><User /></Route>
-	  				<Route path="/userportal/userpass/:id"><UserPasses /></Route>
-	  				<Route path="/userportal/passstore/:id"><PassStore /></Route>
-	  				<Route exact path="/userportal/accountsettings/:id"><AccountSettings /></Route>
-	  				<Route exact path="/userportal/accountsettings/confirmemail/:id"><ConfirmEmail /></Route>
-	  				<Route exact path="/userportal/accountsettings/confirmedemail/:id"><ConfirmEmail /></Route>
-	  				<Route exact path="/userportal/accountsettings/passapp1/:id"><PassApp1 /></Route>
-	  				<Route exact path="/userportal/accountsettings/passapp2/:id"><PassApp2 /></Route>
-                    <Route path="/confirmpassword"><ConfirmPassword /> </Route>
-                    <Route path="/passwordResetReq"><PasswordResetReq /></Route> 
-                    <Route path="/changePassword"><ChangePassword /></Route>
-					<Route path="/error"><AccessError /></Route>
-	  			</Switch>
-	  		</div>
-	  	</Router>
+  
+	const [authLoading, setAuthLoading] = useState(true);
+	const {REACT_APP_API_URL , REACT_APP_PUBLIC_URL} = process.env;
+
+	useEffect(() => { // tells component to do something after render.
+		const token = getToken();
+		if (!token) {
+		  return;
+		}
+	 
+		axios.get(`${REACT_APP_API_URL}/verifyToken?token=${token}`).then(response => {
+			console.log("authorized!");
+			setUserSession(response.data.token, response.data.user);
+			setAuthLoading(false);
+		}).catch(error => {
+		  	if (!error.response){
+				console.log(error);
+				setErrorSession(error);
+				setAuthLoading(false);
+			  }else {
+				console.log(error.response.status);
+				setErrorSession(error.response.status);
+				removeUserSession();
+				setAuthLoading(false);
+			  }
+		});
+	}, []);
+
+
+	if (authLoading && getToken()) {
+		console.log('Checking Authentication...');
+	}
+	
+	return (
+		<Router>
+			<div>
+				< NavBar />
+				<Switch>
+					{/* Public Routes without auth token required */}
+					<Route exact path = "/"><HomeLayout /></Route>
+					<PublicRoute path="/login"><Login /></PublicRoute>
+					<PublicRoute path="/registration"><Registration /></PublicRoute> 
+					<PublicRoute path="/adminRegistration"><AdminRegistration /></PublicRoute>
+
+					{/* Private with auth required */}
+					<PrivateRoute exact path="/adminPortal"><AdminPortal /></PrivateRoute>
+					<PrivateRoute path="/adminPortal/:id"><AdminPortal /></PrivateRoute>
+					<PrivateRoute path="/dataAnalytics/:id"><DataAnalytics /></PrivateRoute>
+					<PrivateRoute path="/passManagement/:id"><PassManagement /></PrivateRoute>
+					<PrivateRoute path="/userManagement/:id"><UserManagement /></PrivateRoute>
+					<PrivateRoute path="/passAccepted/:id"><PassAccepted /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/:id"><User /></PrivateRoute>
+					<PrivateRoute path="/userportal/userpass/:id"><UserPasses /></PrivateRoute>
+					<PrivateRoute path="/userportal/passstore/:id"><PassStore /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/accountsettings/:id"><AccountSettings /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/accountsettings/confirmemail/:id"><ConfirmEmail /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/accountsettings/confirmedemail/:id"><ConfirmEmail /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/accountsettings/passapp1/:id"><PassApp1 /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/accountsettings/passapp2/:id"><PassApp2 /></PrivateRoute>
+					<PrivateRoute path="/confirmpassword" ><ConfirmPassword /> </PrivateRoute>
+					<PrivateRoute path="/passwordResetReq"><PasswordResetReq /></PrivateRoute> 
+					<PrivateRoute path="/changePassword"><ChangePassword /></PrivateRoute>
+
+				</Switch>
+			</div>
+		</Router>
   );
 }
 
