@@ -42,6 +42,13 @@ router.get("/partners", (req, res) => {
     res.send("HELJDLKJFDF")
 })
 
+router.get("/organizations", (req, res) => {
+    admin.getOrganizations(req, (err, results) => {
+        if(err) throw err;
+        res.send(results)
+    })
+})
+
 
 
 module.exports = router;

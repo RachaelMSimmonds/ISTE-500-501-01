@@ -38,3 +38,10 @@ module.exports.getPartners = (req, resp) => {
             resp(error, results)
 
 })};
+
+module.exports.getOrganizations = (req, resp) =>{
+    conn.query(
+        `SELECT * FROM organizations`,
+        (error,results,fields) => {
+            resp(error, results)
+})};
