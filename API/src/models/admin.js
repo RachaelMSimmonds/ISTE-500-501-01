@@ -46,12 +46,39 @@ module.exports.getOrganizations = (req, resp) =>{
             resp(error, results)
 })};
 
+module.exports.getPassTypes = (req, resp) =>{
+    conn.query(
+        `SELECT * FROM passtype;`,
+        (error,results,fields) => {
+            resp(error, results)
+})};
+
+
 module.exports.updatePass = (req, resp) =>{
     conn.query(
         `UPDATE passes SET dateExpires = ? WHERE passId = ?;`,
         [req.timestamp, req.passId],
         (error,results,fields) => {
             resp(error, results)
+})};
+
+module.exports.makePass = (req, resp) =>{
+    conn.query(
+        `INSERT INTO passes(
+            passTypeName,
+            dateExpires
+        ) VALUES (
+            'General'
+        );`,
+        [req.passTypeName, req.dateExpires],
+        (error,results,fields) => {
+            conn.query(
+                `INSERT INTO patrons VALUES (?,?)`,
+                [req.userId, results.insertId],
+                (error,results,fields) => {
+                    resp(error, results)
+        })
+            
 })};
 
 module.exports.updateOrganization = (req, resp) =>{

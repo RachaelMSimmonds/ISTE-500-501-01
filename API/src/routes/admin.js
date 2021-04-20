@@ -72,12 +72,30 @@ router.put("/organization", (req, res) => {
     })
 })
 
+router.get("/passTypes", (req, res) => {
+    admin.getPassTypes(req, (err, results) => {
+        if(err) throw err;
+        res.send(results)
+    })
+})
+
+
 router.put("/pass", (req, res) => {
     const passInfo = {
         timestamp: req.body.timestamp,
         passId: req.body.passId
     }
     admin.updatePass(passInfo, (err, results) => {
+        if(err) throw err;
+        res.send(results)
+    })
+}).post("/pass", (req, res) => {
+    const passInfo = {
+        userId: req.body.userId,
+        passTypeName: req.body.passTypeName,
+        dateExpires: req.body.dateExpires
+    }
+    admin.makePass(passInfo, (err, results) => {
         if(err) throw err;
         res.send(results)
     })
