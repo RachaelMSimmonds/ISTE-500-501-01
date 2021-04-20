@@ -83,6 +83,37 @@ router.put("/pass", (req, res) => {
     })
 })
 
+router.get("/orgBenefits", (req, res) =>{
+    admin.getOrgBenefits(req.body.orgId, (err, results) => {
+        if(err) throw err;
+        res.send(results)
+    })
+    
+}).post("/orgBenefits", (req, res) =>{
+
+    const benefitsInfo = {
+        benefitsDesc: req.body.benefitsDesc,
+        orgId: req.body.orgId
+    }
+
+    admin.postOrgBenefits(benefitsInfo, (err, results) => {
+        if(err) throw err;
+        res.send(results)
+    })
+    
+}).delete("/orgBenefits", (req, res) =>{
+    const benefitsInfo = {
+        benefitsId: req.body.benefitsId,
+        orgId: req.body.orgId
+    }
+
+    admin.deleteOrgBenefits(benefitsInfo, (err, results) => {
+        if(err) throw err;
+        res.send(results)
+    })
+    
+})
+
 
 
 

@@ -82,3 +82,26 @@ module.exports.updateOrganization = (req, resp) =>{
 })};
 
 
+module.exports.getOrgBenefits = (req, resp) =>{
+    conn.query(
+        `SELECT * FROM benefits WHERE orgId = ?;`,
+        [req.orgId],
+        (error,results,fields) => {
+            resp(error, results)
+})};
+
+module.exports.postOrgBenefits = (req, resp) =>{
+    conn.query(
+        `INSERT INTO benefits ( benefitsDesc, orgId )VALUES( ?, ? );`,
+        [req.benefitsDesc, req.orgId],
+        (error,results,fields) => {
+            resp(error, results)
+})};
+
+module.exports.deleteOrgBenefits = (req, resp) =>{
+    conn.query(
+        `DELETE FROM benefits WHERE benefitsId = ? AND orgId = ?; `,
+        [req.benefitsId, req.orgId],
+        (error,results,fields) => {
+            resp(error, results)
+})};
