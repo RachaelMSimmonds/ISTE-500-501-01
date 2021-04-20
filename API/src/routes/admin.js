@@ -49,6 +49,44 @@ router.get("/organizations", (req, res) => {
     })
 })
 
+router.put("/organization", (req, res) => {
+    const orgInfo = {
+        orgId: req.body.orgId,
+        orgName: req.body.orgName,
+        orgDesc: req.body.orgDesc,
+        website: req.body.website,
+        address1: req.body.address1,
+        address2: req.body.address2,
+        city: req.body.city,
+        state: req.body.state,
+        zipcode: req.body.zipcode
+    }
+    for (var key in orgInfo){
+        if (typeof orgInfo[key] == 'undefined'){
+            orgInfo[key] = null;
+        }    
+    }
+    admin.updateOrganization(orgInfo, (err, results) => {
+        if(err) throw err;
+        res.send(results)
+    })
+})
+
+router.put("/pass", (req, res) => {
+    const passInfo = {
+        timestamp: req.body.timestamp,
+        passId: req.body.passId
+    }
+    admin.updatePass(passInfo, (err, results) => {
+        if(err) throw err;
+        res.send(results)
+    })
+})
+
+
+
+
+
 
 
 module.exports = router;

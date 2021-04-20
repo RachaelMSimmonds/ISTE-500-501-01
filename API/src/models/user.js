@@ -108,6 +108,32 @@ module.exports.addUserToPartner = (req, resp) => {
 })};
 
 
+module.exports.updateUser = (req, resp) =>{
+    conn.query(
+        `UPDATE users 
+        SET
+        email = ?, 
+        phone =?, 
+        address1 = ?, 
+        address2 = ?, 
+        city = ?, 
+        state= ?, 
+        zipcode = ?
+        WHERE userId = ?;`,
+        [
+            req.email,
+            req.phone,
+            req.address1,
+            req.address2,
+            req.city,
+            req.state,
+            req.zipcode,
+            req.userId
+        ],
+        (error,results,fields) => {
+            resp(error, results)
+})};
+
 
 
 

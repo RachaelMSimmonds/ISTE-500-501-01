@@ -166,4 +166,29 @@ router.post('/signup', (req, res) => {
     // res.json(data)
 })
 
+router.put("/", (req, res) => {
+    const userInfo = {
+        userId: req.body.userId,
+        email: req.body.email,
+        phone: req.body.phone,
+        address1: req.body.address1,
+        address2: req.body.address2,
+        city: req.body.city,
+        state: req.body.state,
+        zipcode: req.body.zipcode
+    }
+    for (var key in userInfo){
+        if (typeof userInfo[key] == 'undefined'){
+            userInfo[key] = null;
+        }    
+    }
+    user.updateUser(userInfo, (err, results) => {
+        if(err) throw err;
+        res.send(results)
+    })
+
+})
+
+
+
 module.exports = router;
