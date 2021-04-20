@@ -32,7 +32,7 @@ function UserPasses(){
 			axios.post(REACT_APP_API_URL+'/pass', { username: user.username })
 			.then(response => {
 				console.log(JSON.stringify(response.data));
-				setData(response.data);
+				setData(JSON.stringify(response.data));
 				// return JSON.stringify(response.data);
 			}).catch(error => {
 					
