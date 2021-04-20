@@ -26,6 +26,7 @@ app.use(cors());
 app.use(express.json());
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+//
 
 
 
@@ -78,7 +79,7 @@ app.get('/verifyToken', function (req, res) {
       });
    
       // return 401 status if the userId does not match.
-      if (userData.userId !== userData.userId) {
+      if (user.userId !== userData.userId) {
         console.log("Error 401: " + user);
         return res.status(401).json({
           error: true,
@@ -114,6 +115,8 @@ app.get('/verifyToken', function (req, res) {
       // get basic user details
       //var userObj = util.getCleanUser(userData);
       
+      // var userObj = util.getCleanUser(user);
+      // return res.json({ user: userObj, token });
     });
   });
 

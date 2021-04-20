@@ -3,8 +3,13 @@ let router = express.Router();
 
 //const query = require("../models/queryBuilder");
 const pass = require("../models/pass")
-
-router.use(express.json())
+const cors = require('cors');
+// enable CORS
+router.use(cors());
+// parse application/json
+router.use(express.json());
+// parse application/x-www-form-urlencoded
+router.use(express.urlencoded({ extended: true }));
 
 //get all passes
 // router.get("/", (req, res) => {

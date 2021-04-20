@@ -100,8 +100,8 @@ function App(){
 					<PrivateRoute path="/userManagement/:id"><UserManagement /></PrivateRoute>
 					<PrivateRoute path="/passAccepted/:id"><PassAccepted /></PrivateRoute>
 					<PrivateRoute exact path="/userportal/:id"><User /></PrivateRoute>
-					<PrivateRoute path="/userportal/userpass/:id"><UserPasses /></PrivateRoute>
-					<PrivateRoute path="/userportal/passstore/:id"><PassStore /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/userpass/:id"><UserPasses /></PrivateRoute>
+					<PrivateRoute path="/userportal/passstore"><PassStore /></PrivateRoute>
 					<PrivateRoute exact path="/userportal/accountsettings/:id"><AccountSettings /></PrivateRoute>
 					<PrivateRoute exact path="/userportal/accountsettings/confirmemail/:id"><ConfirmEmail /></PrivateRoute>
 					<PrivateRoute exact path="/userportal/accountsettings/confirmedemail/:id"><ConfirmEmail /></PrivateRoute>
