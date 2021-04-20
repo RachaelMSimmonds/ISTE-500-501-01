@@ -26,7 +26,7 @@ function Login(){
 				setLoading(false);
 				console.log(JSON.stringify(response.data))
 				setUserSession(response.data.token, response.data);
-      			history.push('/');
+      			history.push('/userportal/1');
 			}).catch(error => {
 				
 				if (!error.response){

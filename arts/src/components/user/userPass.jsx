@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+import axios from 'axios';
+import Cookies from 'js-cookie'
+import { Link, useHistory, useLocation } from "react-router-dom";
+import { setUserSession, getUserSession } from '../services/Common';
 import { useParams } from "react-router-dom";
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
@@ -13,6 +16,39 @@ function UserPasses(){
 	
 	let params = useParams();
 	let id = params.id;
+
+	let history = useHistory();
+	let location = useLocation();
+	const {REACT_APP_API_URL, REACT_APP_PUBLIC_URL} = process.env;
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
+	const [passesData, setData] = useState(null);
+
+	useEffect(() => { // tells component to do something after render.
+		const getPasses = async () => {
+			console.log(Cookies.get('user'));
+			const user = JSON.parse(Cookies.get('user'));
+			console.log(user.username)
+			axios.post(REACT_APP_API_URL+'/pass', { username: user.username })
+			.then(response => {
+				console.log(JSON.stringify(response.data));
+				setData(response.data);
+				// return JSON.stringify(response.data);
+			}).catch(error => {
+					
+				if (!error.response){
+					console.log(error);
+				} else{
+					setLoading(false);
+					if (error.response.status === 401){
+						setError(error.response.data.message);
+					}
+					else setError("Something went wrong. Please try again later.");
+				}
+			});
+		}
+		getPasses();
+	}, []);
 	
 	return (
 		<Layout>
@@ -43,7 +79,7 @@ function UserPasses(){
 					minHeight: 280,
 				  }}
 				>
-				  Landing page for User's passes
+					{passesData}
 				</Content>
 			  </Layout>
 			</Layout>
