@@ -63,6 +63,8 @@ app.get('/', (req, res) => {
 
 // verify the token and return it if it's valid
 app.get('/verifyToken', function (req, res) {
+    console.log(req.body.userId)
+    console.log(req.query.userId)
     // check header or url parameters or post parameters for token
     var token = req.body.token || req.query.token;
     if (!token) {
@@ -79,17 +81,18 @@ app.get('/verifyToken', function (req, res) {
       });
    
       // return 401 status if the userId does not match.
-      if (user.userId !== userData.userId) {
-        console.log("Error 401: " + user);
-        return res.status(401).json({
-          error: true,
-          message: "Invalid user."
-        });
-      }
+      // if (user.userId !== userData.userId) {
+      //   console.log("Error 401: " + user);
+      //   return res.status(401).json({
+      //     error: true,
+      //     message: "Invalid user."
+      //   });
+      // }
 
       model.getUserInfo(req.body.userId, (error, results) => {
         if(err) throw err;
         if(results.length == 0){
+          console.log("IN BAD AUTH")
           return res.status(401).json({
                 error: true,
                 message: "Invalid user."
