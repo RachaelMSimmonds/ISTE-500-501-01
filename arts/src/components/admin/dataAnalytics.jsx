@@ -10,7 +10,7 @@ import {
   SettingOutlined,
 } from "@ant-design/icons"
 import { Pie } from 'ant-design-pro/lib/Charts';
-import { Typography } from 'antd';
+import { Typography, Select } from 'antd';
 
 const { Title } = Typography;
 

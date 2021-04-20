@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
-import {Layout, Menu, Icon, Breadcrumb, Button} from "antd";
+import {Layout, Menu, Icon, Breadcrumb, Button, Result} from "antd";
 import AdminSidebar from '../navigation/admSidebar';
 import {
   DesktopOutlined,
