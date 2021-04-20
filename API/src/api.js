@@ -85,9 +85,35 @@ app.get('/verifyToken', function (req, res) {
           message: "Invalid user."
         });
       }
+
+      model.getUserInfo(req.body.userId, (error, results) => {
+        if(err) throw err;
+        if(results.length == 0){
+          return res.status(401).json({
+                error: true,
+                message: "Invalid user."
+              });
+        }
+
+        return res.json({ user: {
+          userId: results.userId,
+          username: results.username,
+          firstName: results.firstName,
+          lastName: results.lastName
+
+        }, token });
+      })
+
+      // console.log("Error 401: " + user);
+      //   return res.status(401).json({
+      //     error: true,
+      //     message: "Invalid user."
+      //   });
+
+
       // get basic user details
-      var userObj = util.getCleanUser(userData);
-      return res.json({ user: userObj, token });
+      //var userObj = util.getCleanUser(userData);
+      
     });
   });
 

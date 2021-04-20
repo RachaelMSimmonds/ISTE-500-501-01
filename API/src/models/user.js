@@ -18,10 +18,11 @@ function getUserData(){
 module.exports.getUserData = getUserData;
 
 
-module.exports.getUsers = (req, resp) => { 
+module.exports.getUserInfo = (req, resp) => { 
     conn.query(
-        "SELECT * FROM users;SELECT * FROM passes",
+        "SELECT * FROM users WHERE userId = ?", [req],
         (error,results,fields) => {
+            //console.log(results.userId)
             resp(error, results)
 
 })};
