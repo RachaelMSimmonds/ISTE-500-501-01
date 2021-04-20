@@ -24,7 +24,8 @@ function Login(){
 			axios.post(REACT_APP_API_URL+'/user/signin', { username: values.username, password: values.password })
 			.then(response => {
 				setLoading(false);
-				setUserSession(response.data.token, response.data.user);
+				console.log(JSON.stringify(response.data))
+				setUserSession(response.data.token, response.data);
       			history.push('/');
 			}).catch(error => {
 				

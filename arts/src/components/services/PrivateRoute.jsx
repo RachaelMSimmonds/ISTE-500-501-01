@@ -7,7 +7,7 @@ function PrivateRoute({ children, ...rest }) {
   return (
     <Route
       {...rest}
-      render={({ location }) => getUserSession() ? 
+      render={({ location }) => getToken() ? 
       children : <Redirect to={{ pathname: '/login', state: { from: location } }} />}
     />
   );

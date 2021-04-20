@@ -51,9 +51,13 @@ router.post("/signin", (req, res) => {
 
         }
         else{
+            // generate token
+            const token = util.generateToken(creds);
+            
             res.json({
                 userId: results[0].userId,
-                username: results[0].userName
+                username: results[0].userName,
+                token: token
             })
             //res.send(results)
             

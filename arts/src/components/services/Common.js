@@ -8,13 +8,13 @@ export const getUserSession = () => {
   if (useCookies){
     const userStr = Cookies.get('user');
     if (userStr) 
-      return JSON.parse(userStr.name);
+      return JSON.parse(userStr.username);
     else 
       return null;
   } else {
       const userStr = sessionStorage.getItem('user');
     if (userStr) 
-      return JSON.parse(userStr.name);
+      return JSON.parse(userStr.username);
     else 
       return null;
   }
@@ -49,11 +49,11 @@ export const setUserSession = (token, user) => {
   
   var useCookies = true
   if (useCookies){
-    Cookies.setItem('token', token)
-    Cookies.setItem('user', JSON.stringify(user));
+    Cookies.set('token', token)
+    Cookies.set('user', user);
   } else {
     sessionStorage.setItem('token', token);
-    sessionStorage.setItem('user', JSON.stringify(user));
+    sessionStorage.setItem('user', JSON.parse(user));
   }
 }
 
@@ -71,7 +71,7 @@ export const setErrorSession = (message) => {
   
   var useCookies = true
   if (useCookies){
-    Cookies.setItem('error', message);
+    Cookies.set('error', message);
   } else {
     sessionStorage.setItem('error', message);
   }
