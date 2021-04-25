@@ -6,6 +6,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { setUserSession, getUserSession } from '../services/Common';
 import { useParams } from "react-router-dom";
 import { Layout, Menu, Breadcrumb } from 'antd';
+import { Table } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
 
@@ -50,6 +51,26 @@ function UserPasses(){
 		getPasses();
 	}, []);
 	
+	const tabcolumns = [
+		{
+			title: '',
+			dataIndex: 'passTypeName',
+			key: 'passTypeName',
+		},
+		{
+			title:,
+			dataIndex: 'dateCreated',
+			key: 'dateCreated',
+		},
+		{
+			title:,
+			dataIndex: 'dateExpires',
+			key: 'dateExpires',
+		}
+	]
+		
+	
+	
 	return (
 		<Layout>
 			<Header className="header">
@@ -80,6 +101,7 @@ function UserPasses(){
 				  }}
 				>
 					{passesData}
+					<Table dataSource={passesData} columns={tabcolumns}></Table>
 				</Content>
 			  </Layout>
 			</Layout>
