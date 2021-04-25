@@ -53,17 +53,17 @@ function UserPasses(){
 	
 	const tabcolumns = [
 		{
-			title: '',
+			title: 'Pass',
 			dataIndex: 'passTypeName',
 			key: 'passTypeName',
 		},
 		{
-			title:,
+			title: 'Date Acquired',
 			dataIndex: 'dateCreated',
 			key: 'dateCreated',
 		},
 		{
-			title:,
+			title: 'Expiration date',
 			dataIndex: 'dateExpires',
 			key: 'dateExpires',
 		}
