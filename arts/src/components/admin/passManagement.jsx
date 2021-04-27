@@ -19,6 +19,19 @@ const { SubMenu } = Menu;
 
 //wireframe 20
 function PassManagement(){
+	
+	const tabcolumns = [
+		{
+			title: 'Name',
+			dataIndex: '',
+			key: ''
+		},
+		{
+			title: '',
+			dataIndex: 'Expiration',
+			key: ''
+		}
+	];
 	return(
 		<div>
 			 <Layout style={{ minHeight: '100vh' }}>

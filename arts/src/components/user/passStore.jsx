@@ -14,6 +14,24 @@ function PassStore(){
 	let params = useParams();
 	let id = params.id;
 	
+	const tabcolumns = [
+		{
+			title: 'Pass',
+			dataIndex: 'passTypeName',
+			key: 'passTypeName',
+		},
+		{
+			title: 'Date Acquired',
+			dataIndex: 'dateCreated',
+			key: 'dateCreated',
+		},
+		{
+			title: 'Expiration date',
+			dataIndex: 'dateExpires',
+			key: 'dateExpires',
+		}
+	]
+	
 	return(
 		<Layout>
 			<Header className="header">
