@@ -23,13 +23,13 @@ function PassManagement(){
 	const tabcolumns = [
 		{
 			title: 'Name',
-			dataIndex: '',
-			key: ''
+			dataIndex: 'passTypeName',
+			key: 'passTypeName'
 		},
 		{
-			title: '',
-			dataIndex: 'Expiration',
-			key: ''
+			title: 'Expiration',
+			dataIndex: 'dateExpires',
+			key: 'dateExpires'
 		}
 	];
 	return(
