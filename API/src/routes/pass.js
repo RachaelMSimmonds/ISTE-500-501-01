@@ -38,12 +38,12 @@ router.use(express.urlencoded({ extended: true }));
 // })
 
 router.post("/", (req, res) => {
+    console.log("pass.js > POST /pass executed: ")
+    //console.log(JSON.stringify(req.body))
     pass.getUserPass(req.body.username,(err, results) => {
         if(err) throw err;
         res.send(results)
-
     })
-    
 })
 
 module.exports = router;

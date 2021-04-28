@@ -9,6 +9,7 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import { Table } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
+import { json } from "body-parser";
 
 const { Header, Content, Sider } = Layout;
 
@@ -26,29 +27,30 @@ function UserPasses(){
 	const [passesData, setData] = useState(null);
 
 	useEffect(() => { // tells component to do something after render.
+		setLoading(true);
 		const getPasses = async () => {
-			console.log(Cookies.get('user'));
+			console.log("USER COOKIES: " + Cookies.get('user'));
 			const user = JSON.parse(Cookies.get('user'));
-			console.log(user.username)
+			//console.log(user.username);
 			axios.post(REACT_APP_API_URL+'/pass', { username: user.username })
 			.then(response => {
 				console.log(JSON.stringify(response.data));
 				setData(JSON.stringify(response.data));
-				// return JSON.stringify(response.data);
 			}).catch(error => {
 					
 				if (!error.response){
 					console.log(error);
 				} else{
-					setLoading(false);
-					if (error.response.status === 401){
-						setError(error.response.data.message);
-					}
-					else setError("Something went wrong. Please try again later.");
+					error.response.status ?
+						setError(error.response.data.message) :
+						setError("Something went wrong. Please try again later.");
 				}
 			});
 		}
 		getPasses();
+		return () => {
+			setLoading(false);
+		}
 	}, []);
 	
 	const tabcolumns = [
@@ -101,7 +103,7 @@ function UserPasses(){
 				  }}
 				>
 					{passesData}
-					<Table dataSource={passesData} columns={tabcolumns}></Table>
+					{/*<Table dataSource={passesData} columns={tabcolumns}></Table>*/}
 				</Content>
 			  </Layout>
 			</Layout>

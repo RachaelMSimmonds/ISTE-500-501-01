@@ -3,20 +3,6 @@ const { response } = require('express');
 const {conn} = require("../models/queryBuilder")
 const mysql = require("mysql")
 
-function getUserData(){
-    var testUser = {
-        userId: "1",
-        username: "admin",
-        password: "password",
-        name: "Vinny Venutolo",
-    };
-    return testUser;
-}
-
-
-//call query function here
-module.exports.getUserData = getUserData;
-
 
 module.exports.getUserInfo = (req, resp) => { 
     conn.query(
@@ -29,17 +15,18 @@ module.exports.getUserInfo = (req, resp) => {
 
 module.exports.login = (req, resp) => { 
     conn.query(
-        "SELECT * FROM `login` WHERE userName = ? AND password = ?",
+        "SELECT * FROM `login` WHERE username = ? AND password = ?",
         [req.username, req.password] ,
         (error,results,fields) => {
+            //console.log("model user.js's login results: " + JSON.stringify(results))
             resp(error, results)
 
 })};
 
 module.exports.verifyUser = (req, resp) => { 
     conn.query(
-        "SELECT * FROM `login` WHERE userName = ?",
-        [req.userName],
+        "SELECT * FROM `login` WHERE username = ?",
+        [req.username],
         (error,results,fields) => {
             resp(error, results)
 
@@ -74,11 +61,11 @@ module.exports.createUser = (req, resp) => {
             let rId = results.insertId;
             conn.query(`INSERT INTO login (
                 userId,
-                userName,
+                username,
                 password
             )VALUES(?,?,?)`, [
                 results.insertId,
-                 req.userName,
+                 req.username,
                   req.password
                 ], (error,results, fields) =>{
                     resp(error, rId)

@@ -10,8 +10,6 @@ const user = require("./routes/user");
 const pass = require("./routes/pass");
 const admin = require("./routes/admin");
 
-// static user details
-const userData = model.getUserData();
 const app = express();
 const port = 5000;
 dotenv.config();
@@ -45,6 +43,7 @@ app.use(function (req, res, next) {
           message: "Invalid user."
         });
       } else {
+        console.log("Valid Token!");
         req.user = user; //set the user to req so other routes can use it
         next();
       }
@@ -55,16 +54,16 @@ app.use(function (req, res, next) {
 
 // request handlers
 app.get('/', (req, res) => {
-    if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
-    res.send('Hello, ' + req.user.name);
+  console.log("api.js > GET / executed: ")  
+  if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
+    res.send('Hello, ' + req.user.username);
 });
 
 
 
 // verify the token and return it if it's valid
 app.get('/verifyToken', function (req, res) {
-    console.log(req.body.userId)
-    console.log(req.query.userId)
+    console.log("api.js > GET /verifytoken executed: ")
     // check header or url parameters or post parameters for token
     var token = req.body.token || req.query.token;
     if (!token) {
@@ -75,51 +74,27 @@ app.get('/verifyToken', function (req, res) {
     }
     // check token that was passed by decoding token using secret
     jwt.verify(token, process.env.TOKEN_SECRET, function (err, user) {
-      if (err) return res.status(401).json({
-        error: true,
-        message: "Invalid token."
-      });
-   
-      // return 401 status if the userId does not match.
-      // if (user.userId !== userData.userId) {
-      //   console.log("Error 401: " + user);
-      //   return res.status(401).json({
-      //     error: true,
-      //     message: "Invalid user."
-      //   });
-      // }
+      if (err){
+        return res.status(401).json({
+          error: true,
+          message: "Invalid token."
+        });
+      }
 
-      model.getUserInfo(req.body.userId, (error, results) => {
+      console.log('>> getUserInfo begin to execute: ');
+      model.getUserInfo(user.userId, (error, results) => {
         if(err) throw err;
-        if(results.length == 0){
+        results = results[0];
+        if(user.userId != results.userId){
           console.log("IN BAD AUTH")
           return res.status(401).json({
                 error: true,
                 message: "Invalid user."
               });
         }
-
-        return res.json({ user: {
-          userId: results.userId,
-          username: results.username,
-          firstName: results.firstName,
-          lastName: results.lastName
-
-        }, token });
+        var userObj = util.getCleanUser(JSON.stringify(user));
+        return res.json({ user: userObj, token });
       })
-
-      // console.log("Error 401: " + user);
-      //   return res.status(401).json({
-      //     error: true,
-      //     message: "Invalid user."
-      //   });
-
-
-      // get basic user details
-      //var userObj = util.getCleanUser(userData);
-      
-      // var userObj = util.getCleanUser(user);
-      // return res.json({ user: userObj, token });
     });
   });
 

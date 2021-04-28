@@ -43,7 +43,7 @@ CREATE TABLE passType (
 #Tables with 1 dependency
 CREATE TABLE login (
     userId int NOT NULL,
-    userName varchar(25),
+    username varchar(25),
     password char(128),
     PRIMARY KEY (userId),
     FOREIGN KEY (userId) REFERENCES users(userId)

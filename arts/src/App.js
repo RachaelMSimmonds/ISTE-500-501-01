@@ -49,7 +49,7 @@ import './App.css';
 
 function App(){
   
-	const [authLoading, setAuthLoading] = useState(true);
+	const [authLoading, setAuthLoading] = useState(false);
 	const {REACT_APP_API_URL , REACT_APP_PUBLIC_URL} = process.env;
 
 	useEffect(() => { // tells component to do something after render.
@@ -61,25 +61,17 @@ function App(){
 		axios.get(`${REACT_APP_API_URL}/verifyToken?token=${token}`).then(response => {
 			console.log("authorized!");
 			setUserSession(response.data.token, response.data.user);
-			setAuthLoading(false);
 		}).catch(error => {
 		  	if (!error.response){
-				console.log(error);
+				console.log("APP.js: " + error);
 				setErrorSession(error);
-				setAuthLoading(false);
 			  }else {
-				console.log(error.response.status);
+				console.log("APP.js: " + error.response.status);
 				setErrorSession(error.response.status);
 				removeUserSession();
-				setAuthLoading(false);
 			  }
 		});
 	}, []);
-
-
-	if (authLoading && getToken()) {
-		console.log('Checking Authentication...');
-	}
 	
 	return (
 		<Router>
@@ -101,7 +93,7 @@ function App(){
 					<PrivateRoute path="/passAccepted/:id"><PassAccepted /></PrivateRoute>
 					<PrivateRoute exact path="/userportal/:id"><User /></PrivateRoute>
 					<PrivateRoute exact path="/userportal/userpass/:id"><UserPasses /></PrivateRoute>
-					<PrivateRoute path="/userportal/passstore"><PassStore /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/passstore/:id"><PassStore /></PrivateRoute>
 					<PrivateRoute exact path="/userportal/accountsettings/:id"><AccountSettings /></PrivateRoute>
 					<PrivateRoute exact path="/userportal/accountsettings/confirmemail/:id"><ConfirmEmail /></PrivateRoute>
 					<PrivateRoute exact path="/userportal/accountsettings/confirmedemail/:id"><ConfirmEmail /></PrivateRoute>

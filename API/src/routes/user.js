@@ -9,12 +9,10 @@ let router = express.Router();
 router.use(cors());
 router.use(express.json());
 
-// static user details
-const userData = user.getUserData();
-
 // generate token using secret from process.env.TOKEN_SECRET
 var jwt = require('jsonwebtoken');
 const { conn } = require("../models/queryBuilder");
+const { json } = require("body-parser");
 
 
 //send post body in json format:
@@ -23,6 +21,7 @@ const { conn } = require("../models/queryBuilder");
 //     "password": "password"
 // }
 router.post("/signin", (req, res) => {
+    console.log("user.js > POST /signin executed: ")
     const creds  = {
         username: req.body.username,
         password: req.body.password
@@ -40,6 +39,7 @@ router.post("/signin", (req, res) => {
 
     //Checks DB to see if entry with inputted credentials exists
     user.login(creds, (err, results) => {
+        console.log("user.js > user.login executed: ")
         if(err) throw err;
 
         //returns a 401 status if the credentials don't exist
@@ -52,21 +52,12 @@ router.post("/signin", (req, res) => {
         }
         else{
             // generate token
-            const token = util.generateToken(creds);
-            
-            res.json({
-                userId: results[0].userId,
-                username: results[0].userName,
-                token: token
-            })
-            //res.send(results)
-            
-            // // generate token
-            // const token = util.generateToken(creds);
-            // // get basic user details
-            // const userObj = util.getCleanUser(userData);
-            // // return the token along with user details
-            // return res.json({ user: userObj, token });
+            var strResults = JSON.stringify(results[0]);
+            console.log("RESULTS: " + strResults)
+            const token = util.generateToken(strResults);
+            const userObj = util.getCleanUser(strResults);
+            console.log('userObj: ' + JSON.stringify(userObj))
+            res.json({user: userObj, token})
 
         }   
 
@@ -75,7 +66,7 @@ router.post("/signin", (req, res) => {
 });//end of router login
 
 router.get('/signup', (req, res) => {
-    console.log("HERE!")
+    console.log("user.js > GET /signup executed: ")
     user.getUsers(req, (err, results) => {
         if(err) throw err;
         res.send(results)
@@ -85,8 +76,9 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', (req, res) => {
+    console.log("user.js > POST /signup executed: ")
     const data = {
-        userName: req.body.userName,
+        username: req.body.username,
         password: req.body.password,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -107,7 +99,7 @@ router.post('/signup', (req, res) => {
         }    
     }
     if(
-        data.userName === null ||
+        data.username === null ||
         data.password === null ||
         data.firstName === null ||
         data.lastName === null
@@ -119,6 +111,7 @@ router.post('/signup', (req, res) => {
     }else{
 
         user.verifyUser(data, (err, results) => {
+            console.log("user.js > user.verifyUser executed: ")
             if(err) throw err;
             if(results.length != 0){
                 res.status(401).json({
@@ -129,6 +122,7 @@ router.post('/signup', (req, res) => {
             }
             else{
                 user.createUser(data, (err, results) => {
+                    console.log("user.js > user.createUser executed: ")
                     if(err) throw err;
                     if(data.role === "admin"){
                         user.addUserToAdmin(results, (err, results) => {
@@ -167,6 +161,7 @@ router.post('/signup', (req, res) => {
 })
 
 router.put("/", (req, res) => {
+    console.log("user.js > PUT / executed: ")
     const userInfo = {
         userId: req.body.userId,
         email: req.body.email,

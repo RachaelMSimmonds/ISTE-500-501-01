@@ -106,7 +106,7 @@ DROP TABLE IF EXISTS `testdb`.`login` ;
 
 CREATE TABLE IF NOT EXISTS `testdb`.`login` (
   `userId` INT NOT NULL,
-  `userName` VARCHAR(25) NULL DEFAULT NULL,
+  `username` VARCHAR(25) NULL DEFAULT NULL,
   `password` CHAR(128) NULL DEFAULT NULL,
   PRIMARY KEY (`userId`),
   CONSTRAINT `login_ibfk_1`

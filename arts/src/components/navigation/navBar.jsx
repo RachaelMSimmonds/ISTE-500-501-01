@@ -1,6 +1,6 @@
 import React from "react";
 import { removeUserSession, getUser } from '../services/Common';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import ReactDOM from "react-dom";
 import { Menu } from "antd";
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
@@ -8,21 +8,15 @@ import "antd/dist/antd.css";
 import { OmitProps } from "antd/lib/transfer/ListBody";
 
 function NavBar(){
-	/*
-    const Link_Object = {
-        pathname: "",
-		state: { from: '/' }
-	}
-    */
 
     return (
     <div>
         <nav>
             <ul>
-                <li><Link to={{pathname: "/",state:{from:"/"}}}>Home</Link> </li>
-                <li><Link to={{pathname: "/login",state:{from:"/"}}}>Login</Link> </li>
-                <li><Link to={{pathname: "/signup",state:{from:"/login"}}}>Sign Up</Link> </li>
-                <li><Link to={{pathname: "/adminregistration",state:{from:"/"}}}>Join as Organization</Link></li>
+                <li><Link to={{pathname: "/"}}>Home</Link> </li>
+                <li><Link to={{pathname: "/login"}}>Login</Link> </li>
+                <li><Link to={{pathname: "/signup"}}>Sign Up</Link> </li>
+                <li><Link to={{pathname: "/adminregistration"}}>Join as Organization</Link></li>
             </ul>
         </nav>
     </div>

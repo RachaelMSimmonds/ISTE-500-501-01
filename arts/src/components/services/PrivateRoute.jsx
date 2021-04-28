@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect, useHistory, useLocation, useState } from 'react-router-dom';
+import { Route, Redirect, useState } from 'react-router-dom';
 import { getToken, getUserSession } from './Common';
  
 // handle the private routes

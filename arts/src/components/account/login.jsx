@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
 import ReactDOM from "react-dom";
@@ -15,32 +15,26 @@ function Login(){
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
 
-	// handle button click of login form
 	const login = (values) => {
-			//console.log(REACT_APP_API_URL+'/user/signin');
-			setError(null);
-			setLoading(true);
+		//console.log(REACT_APP_API_URL+'/user/signin');
+		
+		axios.post(REACT_APP_API_URL+'/user/signin', { username: values.username, password: values.password })
+		.then(response => {
+			console.log(JSON.stringify(response.data))
+			setUserSession(response.data.token, response.data.user);
+			history.push('/userportal/1');
+		}).catch(error => {
 			
-			axios.post(REACT_APP_API_URL+'/user/signin', { username: values.username, password: values.password })
-			.then(response => {
-				setLoading(false);
-				console.log(JSON.stringify(response.data))
-				setUserSession(response.data.token, response.data);
-      			history.push('/userportal/1');
-			}).catch(error => {
-				
-				if (!error.response){
-					console.log(error);
-				} else{
-					setLoading(false);
-					if (error.response.status === 401){
-						setError(error.response.data.message);
-					}
-					else setError("Something went wrong. Please try again later.");
+			if (!error.response){
+				console.log(error);
+			} else{
+				if (error.response.status === 401){
+					setError(error.response.data.message);
 				}
-			});
-		}
-
+				else setError("Something went wrong. Please try again later.");
+			}
+		});
+	}
 
 	// Antd Declarations
 	const { Text, Link } = Typography;
@@ -61,21 +55,18 @@ function Login(){
 		  offset: 8,
 		  span: 16,
 		},
-	  };
+	  }; 
 
-	  const getError = () =>{
-		  return error;
-	  }
-	  
-		const onFinish = (values) => {
-		  // console.log('Success:', values);
-		  //values.get("username")
-		  login(values);
-		};
-	  
-		const onFinishFailed = (errorInfo) => {
-		  console.log('Failed:', errorInfo);
-		};	  
+	const onFinish = (values) => {
+		// console.log('Success:', values);
+		//values.get("username")
+		setLoading(true);
+		login(values);
+	};
+	
+	const onFinishFailed = (errorInfo) => {
+		console.log('Failed:', errorInfo);
+	};	  
 		return (
 			
 			<div className = "login" >
@@ -86,11 +77,11 @@ function Login(){
 					initialValues={{
 					remember: true,
 					}}
-					onFinish={login}
+					onFinish={onFinish}
 					onFinishFailed={onFinishFailed}>
 
 					<Form.Item {...tailLayout}>
-							<Text type="danger" strong> {getError()} </Text>
+							<Text type="danger" strong></Text>
 					</Form.Item>
 
 					<Form.Item
@@ -125,7 +116,7 @@ function Login(){
 					</Form.Item>
 			
 					<Form.Item {...tailLayout}>
-					<Button type="primary" htmlType="submit" disabled={loading} >
+					<Button type="primary" htmlType="submit" >
 						Submit
 					</Button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

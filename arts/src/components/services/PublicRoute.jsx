@@ -1,5 +1,6 @@
+import Cookies from 'js-cookie';
 import React from 'react';
-import { Route, Redirect, useHistory, useLocation } from 'react-router-dom';
+import { Route, Redirect, useState } from 'react-router-dom';
 import { getToken, getUserSession } from './Common';
  
 // handle the public routes
@@ -8,7 +9,7 @@ function PublicRoute({ children, ...rest }) {
     <Route
       {...rest}
       render={({ location }) => !getToken() ? 
-      children : <Redirect to={{ pathname: '/' }} />}
+      children : <Redirect to={{ pathname: "/userPortal/1", state: { from: location }}} />}
     />
   );
 }
