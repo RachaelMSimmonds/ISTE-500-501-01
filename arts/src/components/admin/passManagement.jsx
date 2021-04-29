@@ -29,15 +29,46 @@ function PassManagement(){
 		},
 		{
 			title: 'Modify',
-			dataIndex: 'passTypeName',
-			key: 'passTypeName'
+			key: 'modify',
+			render () => (
+			<a>Modify</a>
+			)
 		},
 		{
 			title: 'Delete',
-			dataIndex: 'passTypeName',
-			key: 'passTypeName'
+			key: 'delete',
+			render () => (
+			<a>Modify</a>
+			)
 		}
 	];
+	const penddata[
+		{
+			passTypeName: 'Muesam'
+		},
+		{
+			passTypeName: 'Void'
+		}
+	];
+	
+	const acceptdata[
+		{
+			passTypeName: 'Ship'
+		},
+		{
+			passTypeName: 'Gallery'
+		}
+	];
+	
+	const denydata[
+		{
+			passTypeName: 'Muesam'
+		},
+		{
+			passTypeName: 'Junkyard'
+		}
+	];
+	const 
 	return(
 		<div>
 			 <Layout style={{ minHeight: '100vh' }}>
@@ -54,7 +85,6 @@ function PassManagement(){
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
             <Title>Pass Management</Title>
 				
-				<Table />
             <br>
             </br>
 
@@ -65,7 +95,7 @@ function PassManagement(){
                 <p>Pending User3</p>
               </Card>,
                 
-                <Table />
+                <Table columns={passtabcolumns}/>
               <br>
               </br>
             
@@ -75,15 +105,8 @@ function PassManagement(){
                 <p>Accepted User5</p>
                 <p>Accepted User6</p>
               </Card>,
-              <Button type="primary">
-                  MODIFY
-                </Button>
               
-                <Button type="primary" danger>
-                  DELETE
-                </Button>
-                <br>
-              </br>
+              <Table columns={passtabcolumns} />
               <br>
               </br>
             
@@ -96,16 +119,9 @@ function PassManagement(){
                 <p>Denied User9</p>
               </Card>,
 				
-				<Table />
-              <Button type="primary">
-                  MODIFY
-                </Button>
+				<Table columns={passtabcolumns} />
               
-                <Button type="primary" danger>
-                  DELETE
-                </Button>
-                <br>
-              </br>
+              
               <br>
               </br>
             
