@@ -103,7 +103,7 @@ function UserPasses(){
 				  }}
 				>
 					{passesData}
-					{/*<Table dataSource={passesData} columns={tabcolumns}></Table>*/}
+					<Table dataSource={passesData} columns={tabcolumns} />
 				</Content>
 			  </Layout>
 			</Layout>

@@ -11,6 +11,7 @@ import {
 } from "@ant-design/icons"
 import { Card } from 'antd';
 import { Typography } from 'antd';
+import { Table } from 'antd';
 
 const { Title } = Typography;
 
@@ -20,16 +21,21 @@ const { SubMenu } = Menu;
 //wireframe 20
 function PassManagement(){
 	
-	const tabcolumns = [
+	const passtabcolumns = [
 		{
 			title: 'Name',
 			dataIndex: 'passTypeName',
 			key: 'passTypeName'
 		},
 		{
-			title: 'Expiration',
-			dataIndex: 'dateExpires',
-			key: 'dateExpires'
+			title: 'Modify',
+			dataIndex: 'passTypeName',
+			key: 'passTypeName'
+		},
+		{
+			title: 'Delete',
+			dataIndex: 'passTypeName',
+			key: 'passTypeName'
 		}
 	];
 	return(
@@ -47,6 +53,8 @@ function PassManagement(){
             </Breadcrumb> */}
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
             <Title>Pass Management</Title>
+				
+				<Table />
             <br>
             </br>
 
@@ -56,15 +64,8 @@ function PassManagement(){
                 <p>Pending User2</p>
                 <p>Pending User3</p>
               </Card>,
-                <Button type="primary">
-                  MODIFY
-                </Button>
-              
-                <Button type="primary" danger>
-                  DELETE
-                </Button>
-                <br>
-              </br>
+                
+                <Table />
               <br>
               </br>
             
@@ -94,6 +95,8 @@ function PassManagement(){
                 <p>Denied User8</p>
                 <p>Denied User9</p>
               </Card>,
+				
+				<Table />
               <Button type="primary">
                   MODIFY
                 </Button>
