@@ -86,19 +86,18 @@ function App(){
 
 					{/* Private with auth required */}
 					<PrivateRoute exact path="/adminPortal"><AdminPortal /></PrivateRoute>
-					<PrivateRoute path="/adminPortal/:id"><AdminPortal /></PrivateRoute>
-					<PrivateRoute path="/dataAnalytics/:id"><DataAnalytics /></PrivateRoute>
-					<PrivateRoute path="/passManagement/:id"><PassManagement /></PrivateRoute>
-					<PrivateRoute path="/userManagement/:id"><UserManagement /></PrivateRoute>
-					<PrivateRoute path="/passAccepted/:id"><PassAccepted /></PrivateRoute>
-					<PrivateRoute exact path="/userportal/:id"><User /></PrivateRoute>
-					<PrivateRoute exact path="/userportal/userpass/:id"><UserPasses /></PrivateRoute>
-					<PrivateRoute exact path="/userportal/passstore/:id"><PassStore /></PrivateRoute>
-					<PrivateRoute exact path="/userportal/accountsettings/:id"><AccountSettings /></PrivateRoute>
-					<PrivateRoute exact path="/userportal/accountsettings/confirmemail/:id"><ConfirmEmail /></PrivateRoute>
-					<PrivateRoute exact path="/userportal/accountsettings/confirmedemail/:id"><ConfirmEmail /></PrivateRoute>
-					<PrivateRoute exact path="/userportal/accountsettings/passapp1/:id"><PassApp1 /></PrivateRoute>
-					<PrivateRoute exact path="/userportal/accountsettings/passapp2/:id"><PassApp2 /></PrivateRoute>
+					<PrivateRoute path="/dataAnalytics"><DataAnalytics /></PrivateRoute>
+					<PrivateRoute path="/passManagement"><PassManagement /></PrivateRoute>
+					<PrivateRoute path="/userManagement"><UserManagement /></PrivateRoute>
+					<PrivateRoute path="/passAccepted"><PassAccepted /></PrivateRoute>
+					<PrivateRoute exact path="/userportal"><User /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/userpass"><UserPasses /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/passstore"><PassStore /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/accountsettings"><AccountSettings /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/accountsettings/confirmemail"><ConfirmEmail /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/accountsettings/confirmedemail"><ConfirmEmail /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/accountsettings/passapp1"><PassApp1 /></PrivateRoute>
+					<PrivateRoute exact path="/userportal/accountsettings/passapp2"><PassApp2 /></PrivateRoute>
 					<PrivateRoute path="/confirmpassword" ><ConfirmPassword /> </PrivateRoute>
 					<PrivateRoute path="/passwordResetReq"><PasswordResetReq /></PrivateRoute> 
 					<PrivateRoute path="/changePassword"><ChangePassword /></PrivateRoute>

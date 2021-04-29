@@ -11,8 +11,6 @@ const { Header, Content, Sider } = Layout;
 //wireframe 10
 function PassStore(){
 	
-	let params = useParams();
-	let id = params.id;
 	
 	const tabcolumns = [
 		{
@@ -36,22 +34,22 @@ function PassStore(){
 		{
 			passTypeName: 'Muesam',
 			dateCreated: 'march 5',
-			dateExpires 'july 17',
+			dateExpires: 'july 17',
 		},
 		{
 			passTypeName: 'Cruise',
 			dateCreated: 'march 27',
-			dateExpires 'august 19',
+			dateExpires: 'august 19',
 		},
 		{
 			passTypeName: 'Gallery',
 			dateCreated: 'march 16',
-			dateExpires 'august 3',
+			dateExpires: 'august 3',
 		},
 		{
 			passTypeName: 'Fireworks',
 			dateCreated: 'march 19',
-			dateExpires 'june 9',
+			dateExpires: 'june 9',
 		}
 	];
 	
@@ -70,9 +68,9 @@ function PassStore(){
 				  defaultOpenKeys={['sub1']}
 				  style={{ height: '100%', borderRight: 0 }}
 				>
-				 	<Menu.Item key="1"><Link to={"/userportal/userpass/"+id}>My Passes</Link></Menu.Item>
-					<Menu.Item key="2"><Link to={"/userportal/passstore/"+id}>Availible Passes</Link></Menu.Item>
-					<Menu.Item key="3"><Link to={"/userportal/accountsettings/"+id}>Account Settings</Link></Menu.Item>
+				 	<Menu.Item key="1"><Link to={"/userportal/userpass/"}>My Passes</Link></Menu.Item>
+					<Menu.Item key="2"><Link to={"/userportal/passstore/"}>Availible Passes</Link></Menu.Item>
+					<Menu.Item key="3"><Link to={"/userportal/accountsettings/"}>Account Settings</Link></Menu.Item>
 				</Menu>
 			  </Sider>
 			  <Layout style={{ padding: '0 24px 24px' }}>

@@ -435,7 +435,7 @@ const tailFormItemLayout = {
           Register
         </Button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <Button type="link" href="http://localhost:3000/registration">Patron Registration</Button>
+        <Button type="link" href="/registration">Patron Registration</Button>
       </Form.Item>
     </Form>
   );

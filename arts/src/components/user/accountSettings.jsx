@@ -11,8 +11,6 @@ const { Header, Content, Sider } = Layout;
 
 function AccountSettings(){
 	
-	let params = useParams();
-	let id = params.id;
 	
 	return(
 		<Layout>
@@ -29,9 +27,9 @@ function AccountSettings(){
 				  defaultOpenKeys={['sub1']}
 				  style={{ height: '100%', borderRight: 0 }}
 				>
-				 	<Menu.Item key="1"><Link to={"/userportal/userpass/"+id}>My Passes</Link></Menu.Item>
-					<Menu.Item key="2"><Link to={"/userportal/passstore/"+id}>Availible Passes</Link></Menu.Item>
-					<Menu.Item key="3"><Link to={"/userportal/accountsettings/"+id}>Account Settings</Link></Menu.Item>
+				 	<Menu.Item key="1"><Link to={"/userportal/userpass/"}>My Passes</Link></Menu.Item>
+					<Menu.Item key="2"><Link to={"/userportal/passstore/"}>Availible Passes</Link></Menu.Item>
+					<Menu.Item key="3"><Link to={"/userportal/accountsettings/"}>Account Settings</Link></Menu.Item>
 				</Menu>
 			  </Sider>
 			  <Layout style={{ padding: '0 24px 24px' }}>
@@ -43,13 +41,13 @@ function AccountSettings(){
 					minHeight: 280,
 				  }}
 				>
-				  <Button type="primary" href={"/userportal/accountsettings/confirmemail/"+id}>Confirm Email</Button>
+				  <Button type="primary" href={"/userportal/accountsettings/confirmemail/"}>Confirm Email</Button>
 					<br />
 					<br />
 				  <Button type="primary" href="/changePassword">Change Password</Button>
 					<br />
 					<br />
-				  <Button type="primary" href={"/userportal/accountsettings/passapp1/"+id}>Upload documents</Button>
+				  <Button type="primary" href={"/userportal/accountsettings/passapp1/"}>Upload documents</Button>
 					<br />
 				</Content>
 			  </Layout>

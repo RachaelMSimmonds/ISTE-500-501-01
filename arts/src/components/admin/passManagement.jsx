@@ -30,19 +30,19 @@ function PassManagement(){
 		{
 			title: 'Modify',
 			key: 'modify',
-			render () => (
+			render: (text, record) => (
 			<a>Modify</a>
 			)
 		},
 		{
 			title: 'Delete',
 			key: 'delete',
-			render () => (
-			<a>Modify</a>
+			render: (text, record) => (
+			<a>Delete</a>
 			)
 		}
 	];
-	const penddata[
+	const penddata = [
 		{
 			passTypeName: 'Muesam'
 		},
@@ -51,7 +51,7 @@ function PassManagement(){
 		}
 	];
 	
-	const acceptdata[
+	const acceptdata = [
 		{
 			passTypeName: 'Ship'
 		},
@@ -60,7 +60,7 @@ function PassManagement(){
 		}
 	];
 	
-	const denydata[
+	const denydata = [
 		{
 			passTypeName: 'Muesam'
 		},
@@ -68,7 +68,6 @@ function PassManagement(){
 			passTypeName: 'Junkyard'
 		}
 	];
-	const 
 	return(
 		<div>
 			 <Layout style={{ minHeight: '100vh' }}>

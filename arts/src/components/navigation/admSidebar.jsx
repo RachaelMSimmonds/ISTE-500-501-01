@@ -28,19 +28,19 @@ function AdminSideBar(){
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
 
           <Menu.Item key="1" icon={<DesktopOutlined />}>
-            <Button type="link" href="/adminPortal/:id">Dashboard</Button>    
+            <Button type="link" href="/adminPortal">Dashboard</Button>    
           </Menu.Item>
 
           <Menu.Item key="2" icon={<PieChartOutlined />}>
-          <Button type="link" href="/adminPortal/:id">Data Analytics</Button> 
+          <Button type="link" href="/adminPortal">Data Analytics</Button> 
           </Menu.Item>
 
           <Menu.Item key="8" icon={<ClusterOutlined />}>
-          <Button type="link" href="/adminPortal/:id">Pass Submissions</Button> 
+          <Button type="link" href="/adminPortal">Pass Submissions</Button> 
           </Menu.Item>
 
           <Menu.Item key="9" icon={<SettingOutlined />}>
-          <Button type="link" href="/adminPortal/:id"> User Management</Button>
+          <Button type="link" href="/adminPortal"> User Management</Button>
           </Menu.Item>
 
         </Menu>

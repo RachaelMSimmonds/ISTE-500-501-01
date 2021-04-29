@@ -18,13 +18,12 @@ import "antd/dist/antd.css";
 //wireframes 11 &12
 function ConfirmEmail(){
 	
-	let params = useParams();
-	let id = params.id;
+	
 	const [form] = Form.useForm();
 	
 	const onFinish = (values) => {
     	console.log('Received values of form: ', values);
-		<Redirect to="/userportal/1" />
+		<Redirect to="/userportal" />
   	};
 	
 	const formItemLayout = {

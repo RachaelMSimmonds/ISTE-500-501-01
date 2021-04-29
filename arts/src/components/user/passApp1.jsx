@@ -17,8 +17,7 @@ import "antd/dist/antd.css";
 
 //wireframe 14
 function PassApp1(){
-	let params = useParams();
-	let id = params.id;
+	
 	
 	const [form] = Form.useForm();
 	
@@ -125,7 +124,7 @@ function PassApp1(){
 				</Form.Item>
 				
 				<Form.Item>
-					<Button type='primary' htmlType='submit' href={'/userportal/accountsettings/passapp2/'+id}>
+					<Button type='primary' htmlType='submit' href={'/userportal/accountsettings/passapp2'}>
 						Submit
 					</Button>
 				</Form.Item>

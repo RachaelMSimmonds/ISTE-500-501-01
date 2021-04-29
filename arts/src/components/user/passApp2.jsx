@@ -16,13 +16,12 @@ import "antd/dist/antd.css";
 
 //wireframe 15
 function PassApp2(){
-	let params = useParams();
-	let id = params.id;
+	
 	
 	return(<div>
 			<Button type='primary'>Upload Document</Button>
 			<br />
-			<Button type='link' href={'/userportal/'+id}>Submit</Button>
+			<Button type='link' href={'/userportal'}>Submit</Button>
 		</div>);
 }
 
