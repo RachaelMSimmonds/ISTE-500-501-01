@@ -30,7 +30,30 @@ function PassStore(){
 			dataIndex: 'dateExpires',
 			key: 'dateExpires',
 		}
-	]
+	];
+	
+	const dataSource= [
+		{
+			passTypeName: 'Muesam',
+			dateCreated: 'march 5',
+			dateExpires 'july 17',
+		},
+		{
+			passTypeName: 'Cruise',
+			dateCreated: 'march 27',
+			dateExpires 'august 19',
+		},
+		{
+			passTypeName: 'Gallery',
+			dateCreated: 'march 16',
+			dateExpires 'august 3',
+		},
+		{
+			passTypeName: 'Fireworks',
+			dateCreated: 'march 19',
+			dateExpires 'june 9',
+		}
+	];
 	
 	return(
 		<Layout>
@@ -62,6 +85,7 @@ function PassStore(){
 				  }}
 				>
 				  Landing page for the pass store
+					<Table dataSource={dataSource} columns={tabcolumns}/>
 				</Content>
 			  </Layout>
 			</Layout>
